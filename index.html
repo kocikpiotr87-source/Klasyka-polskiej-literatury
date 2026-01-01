@@ -144,6 +144,25 @@
         transform: none;
     }
     
+    .reminder-button {
+        width: 100%;
+        background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-bottom: 10px;
+    }
+    
+    .reminder-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+    }
+    
     .footer {
         text-align: center;
         padding: 20px;
@@ -194,6 +213,10 @@
         <button class="nav-button" id="prevBtn" onclick="changeDay(-1)">← Poprzednie</button>
         <button class="nav-button" id="todayBtn" onclick="goToToday()">Dzisiaj</button>
         <button class="nav-button" id="nextBtn" onclick="changeDay(1)">Następne →</button>
+    </div>
+    
+    <div style="padding: 0 40px 20px 40px;">
+        <button class="reminder-button" onclick="setDailyReminder()">🔔 Ustaw codzienne przypomnienie</button>
     </div>
     
     <div class="footer">
@@ -601,6 +624,384 @@
             year: "1946",
             description: "Ten zbiór opowiadań przedstawia świadectwa z nazistowskich obozów koncentracyjnych i okupacji, napisane w powściągliwym, dokumentalnym stylu. Nałkowska pozwala świadkom mówić swoimi własnymi głosami, tworząc potężne świadectwo Holokaustu i niemieckich zbrodni w Polsce.",
             significance: "Jedna z najwcześniejszych i najważniejszych literackich reakcji na Holocaust, powściągliwy styl Nałkowskiej paradoksalnie wzmacnia horror. Dzieło ustanowiło model literatury świadectwa w Polsce powojennej."
+        },
+        {
+            title: "Moralność pani Dulskiej",
+            author: "Gabriela Zapolska",
+            year: "1907",
+            description: "Ta satyra obyczajowa przedstawia Dulskich, rodzinę drobnomieszczańską w Krakowie na początku XX wieku. Pani Dulska, matriarchalna postać, uosabia hipokryzję, materializm i konformizm mieszczaństwa, tyrańizując rodzinę przy zachowaniu pozorów przyzwoitości.",
+            significance: "Jeden z najczęściej wystawianych polskich dramatów, 'dulszczyznа' stała się pojęciem określającym mieszczański konformizm i obłudę. Zapolska stworzyła archetyp polskiej drobnomieszczańskiej hipokryzji."
+        },
+        {
+            title: "Pamiętniki",
+            author: "Jan Chryzostom Pasek",
+            year: "1690-1695",
+            description: "Te barokowe wspomnienia szlachcica z XVII wieku przedstawiają życie sarmatów podczas wojen z Kozakami, Szwedami i Turkami. Pasek opisuje batalie, uczty, przygody i życie codzienne szlachty z niezwykłą żywością i humorem.",
+            significance: "Arcydzieło polskiej prozy barokowej i jedno z najważniejszych źródeł do dziejów mentalności szlacheckiej. Styl Paska wpłynął na polską literaturę i wprowadził wiele powiedzeń do języka potocznego."
+        },
+        {
+            title: "Nad Niemnem",
+            author: "Eliza Orzeszkowa",
+            year: "1888",
+            description: "Powieść przedstawia losy szlachty litewskiej po powstaniu styczniowym, koncentrując się na rodzinie Bohatyrowiczów. Poprzez romanse i konflikty pokoleniowe, Orzeszkowa bada kwestię pracy organicznej, reform społecznych i odbudowy narodu po klęsce powstańczej.",
+            significance: "Najważniejsze dzieło Orzeszkowej, reprezentujące pozytywizm polski. Propagowało ideę pracy organicznej i modernizacji społeczeństwa. Przyczyniło się do nominacji autorki do Nagrody Nobla."
+        },
+        {
+            title: "Dziady - Część III",
+            author: "Adam Mickiewicz",
+            year: "1832",
+            description: "Ten dramat romantyczny łączy obrzęd ludowy dziadów z wizjonerską perspektywą polityczną. Konrad, uwięziony w carskim więzieniu, buntuje się przeciwko Bogu w Wielkiej Improwizacji, podczas gdy duchy i wizje przedstawiają cierpienie Polski pod zaborem rosyjskim.",
+            significance: "Jedno z największych dzieł polskiego romantyzmu, ustanawiające polski mesjanizm romantyczny. Scena Wielkiej Improwizacji należy do szczytowych osiągnięć polskiej poezji dramatycznej."
+        },
+        {
+            title: "Dziady - Część II",
+            author: "Adam Mickiewicz",
+            year: "1823",
+            description: "Wczesna wersja dramatu przedstawia obrzęd dziadów - wspomnienia zmarłych w noc zaduszną. Historia nieszczęśliwej miłości Gustawa i Maryli łączy się z ludowymi wierzeniami i obrzędami, tworząc romantyczną wizję śmierci i pamięci.",
+            significance: "Pierwsze ogniwo cyklu Dziadów, wprowadzające motywy, które Mickiewicz rozwinął w części III. Dzieło łączy folklor z romantyzmem, tworząc unikalną atmosferę mistyczną."
+        },
+        {
+            title: "Sonety krymskie",
+            author: "Adam Mickiewicz",
+            year: "1826",
+            description: "Cykl 18 sonetów opisujących podróż poety po Krymie. Mickiewicz maluje orientalne pejzaże, ruiny tatarskie i stepowe przestrzenie, łącząc opisy przyrody z refleksjami filozoficznymi o przemijaniu, pamięci i tęsknocie.",
+            significance: "Szczyt polskiej poezji romantycznej, mistrzowskie połączenie formy sonetowej z romantyczną treścią. Sonety ustanowiły nowy standard w polskiej poezji pejzażowej."
+        },
+        {
+            title: "Pan Podstoli",
+            author: "Ignacy Krasicki",
+            year: "1778",
+            description: "Ten poemat komiczny przedstawia życie polskiej szlachty w XVIII wieku poprzez postać Podstolego, który prowadzi swój dwór według zasad gościnności, umiaru i cnoty. Krasicki satyryzuje wady szlachty, ale też celebruje jej pozytywne tradycje.",
+            significance: "Jeden z najważniejszych przykładów polskiego klasycyzmu, łączący satyrę z dydaktyzmem. Krasicki stworzył wzorzec cnót obywatelskich i krytykę sarmatyzmu."
+        },
+        {
+            title: "Monachomachia",
+            author: "Ignacy Krasicki",
+            year: "1778",
+            description: "Poemat heroikomiczny opisujący śmieszną wojnę między zakonami o kurę. Wykorzystując styl epicki do opisania błahej sprawy, Krasicki satyryzuje próżność, chciwość i spory duchowieństwa.",
+            significance: "Arcydzieło polskiej literatury oświeceniowej, mistrzowska satyra na swarliwość i materializm duchowieństwa. Wpłynęło na rozwój polskiej poezji komicznej."
+        },
+        {
+            title: "Bajki",
+            author: "Ignacy Krasicki",
+            year: "1779",
+            description: "Zbiór zwięzłych bajek prozą i wierszem, w których zwierzęta i ludzie ilustrują prawdy moralne i społeczne. Krasicki krytykuje ludzkie wady - głupotę, chciwość, próżność - w przystępnej, dowcipnej formie.",
+            significance: "Klasyka polskiej literatury dla młodzieży, wiele bajek Krasickiego przeszło do kanonu i jest recytowanych przez pokolenia. Ustanowiły wzorzec polskiej bajki literackiej."
+        },
+        {
+            title: "Akademia Pana Kleksa",
+            author: "Jan Brzechwa",
+            year: "1946",
+            description: "Ta fantastyczna powieść dla dzieci opisuje przygody Adasia Niezgódki w magicznej szkole prowadzonej przez ekscentrycznego Pana Kleksa. W niezwykłej akademii wszystko jest na opak, a nauka odbywa się poprzez zabawy i przygody.",
+            significance: "Klasyka polskiej literatury dziecięcej, łącząca fantazję z pedagogicznym przesłaniem. Książka wpłynęła na kilka pokoleń młodych czytelników i doczekała się licznych adaptacji."
+        },
+        {
+            title: "Szewcy",
+            author: "Stanisław Ignacy Witkiewicz (Witkacy)",
+            year: "1934",
+            description: "Ten absurdalny dramat przedstawia rewolucję szewców, którzy przejmują władzę. Witkacy miesza polityczną satyrę, filozoficzne rozważania o sztuce i egzystencji z groteskowym humorem, tworząc wizję upadku cywilizacji.",
+            significance: "Jedno z najważniejszych dzieł polskiej awangardy teatralnej, wyprzedzające teatr absurdu o dekady. Witkacy stworzył teorię Czystej Formy w teatrze."
+        },
+        {
+            title: "Matka",
+            author: "Stanisław Ignacy Witkiewicz (Witkacy)",
+            year: "1924",
+            description: "Dramat przedstawia Leon, młodego człowieka zdominowanego przez swoją matkę, który zmaga się z pytaniami o tożsamość i niezależność. Sztuka łączy motywy psychoanalityczne z filozoficznymi rozważaniami o wolności i determinizmie.",
+            significance: "Pionierskie dzieło wprowadzające psychoanalizę do polskiego teatru. Witkacy eksploruje kompleks Edypa i problemy tożsamości w innowacyjnej, awangardowej formie."
+        },
+        {
+            title: "Nienasycenie",
+            author: "Stanisław Ignacy Witkiewicz (Witkacy)",
+            year: "1930",
+            description: "Ta dystopiczna powieść przedstawia upadek Europy pod naporem komunistycznej rewolucji z Azji. Protagonista Genezyp Kapen poszukuje metafizycznego spełnienia w świecie pogrążonym w dekadencji, używając narkotyku 'nienasycenie'.",
+            significance: "Wizjonerska powieść wyprzedzająca dystopie Orwella i Huxleya. Witkacy profetycznie przewidział totalitaryzm i kryzys duchowy współczesnej cywilizacji."
+        },
+        {
+            title: "Pożegnanie jesieni",
+            author: "Stanisław Ignacy Witkiewicz (Witkacy)",
+            year: "1927",
+            description: "Powieść śledzi Atanazego Bazakbala, artystę poszukującego sensu życia poprzez sztukę, seks i filozofię w dekadenckim świecie międzywojennej Europy. Witkacy bada kryzys wartości i niemożność autentycznego przeżycia w zautomatyzowanej cywilizacji.",
+            significance: "Najważniejsza powieść Witkacego, łącząca autobiograficzne elementy z filozoficzną refleksją o kryzysie kultury europejskiej i niemożności osiągnięcia metafizycznego spełnienia."
+        },
+        {
+            title: "W pustyni i w puszczy",
+            author: "Henryk Sienkiewicz",
+            year: "1911",
+            description: "Przygodowa powieść dla młodzieży o polskich dzieciach, Stasiu i Nel, porwanych przez mahdystów w Sudanie. Śledząc ich ucieczkę przez afrykańskie pustynie i dżungle, Sienkiewicz tworzy ekscytującą opowieść o odwadze i przetrwaniu.",
+            significance: "Klasyka polskiej literatury młodzieżowej, wprowadzająca młodych czytelników do egzotycznych krain. Mimo kolonialnych stereotypów, pozostaje jedną z najpopularniejszych polskich książek przygodowych."
+        },
+        {
+            title: "Janko Muzykant",
+            author: "Henryk Sienkiewicz",
+            year: "1879",
+            description: "To krótkie opowiadanie przedstawia tragiczną historię chłopskiego chłopca obdarzonego talentem muzycznym. Gdy Janek próbuje zagrać na skrzypcach w dworze, zostaje brutalnie ukarany przez zarządcę i umiera, nie mogąc zrealizować swojego talentu.",
+            significance: "Jeden z najbardziej wzruszających utworów Sienkiewicza, poruszający problem marnotrawienia talentów z powodu niesprawiedliwości społecznej. Lektura obowiązkowa w polskich szkołach."
+        },
+        {
+            title: "Latarnik",
+            author: "Henryk Sienkiewicz",
+            year: "1881",
+            description: "Nowela o starym Polaku, Skawinskim, który pracuje jako latarnik w Ameryce. W samotności i nostalgii za ojczyzną, znajduje pociechę w czytaniu 'Pana Podstolego' Krasickiego, co przywołuje wspomnienia Polski.",
+            significance: "Wzruszająca opowieść o tęsknocie emigranta za ojczyzną. Sienkiewicz mistrzowsko przedstawia samotność i siłę więzi kulturowej z krajem rodzinnym."
+        },
+        {
+            title: "Dzieje grzechu",
+            author: "Stefan Żeromski",
+            year: "1908",
+            description: "Powieść śledzi Ewę Pobratyńską od młodości po dorosłość, przez miłość, zdradę, upadek moralny i próby odkupienia. Żeromski przedstawia losy kobiety w społeczeństwie, które nie wybacza błędów, badając podwójne standardy moralne.",
+            significance: "Ważne dzieło naturalistyczne badające podwójne standardy moralne wobec kobiet. Śmiałe jak na swoje czasy przedstawienie kobiecej seksualności wywołało kontrowersje."
+        },
+        {
+            title: "Uroda życia",
+            author: "Stefan Żeromski",
+            year: "1912",
+            description: "Zbiór nowel i opowiadań przedstawiających różne aspekty życia - od młodzieńczej miłości po starość, od radości po cierpienie. Żeromski celebruje piękno istnienia mimo jego trudności i tragedii.",
+            significance: "Poetyckie dzieło pokazujące optymistyczną stronę twórczości Żeromskiego. Tytuł stał się skrzydlatym wyrażeniem w polszczyźnie, oznaczającym akceptację życia w całej jego złożoności."
+        },
+        {
+            title: "Echa leśne",
+            author: "Maria Konopnicka",
+            year: "1870-1902",
+            description: "Cykl poezji pejzażowej opisującej polską przyrodę przez wszystkie pory roku. Konopnicka łączy obserwacje natury z refleksjami filozoficznymi i społecznymi, tworząc liryczne portrety polskiego krajobrazu.",
+            significance: "Przykład poezji pejzażowej pozytywizmu polskiego, łączącej miłość do przyrody z narodowym i społecznym przesłaniem. Konopnicka stworzyła wzorzec polskiej poezji przyrodniczej."
+        },
+        {
+            title: "Rota",
+            author: "Maria Konopnicka",
+            year: "1908",
+            description: "Ten patriotyczny wiersz stał się nieoficjalnym hymnem Polski. Napisany w odpowiedzi na germanizację, wyraża determinację Polaków do obrony języka, wiary i tożsamości narodowej przeciwko zaborcom.",
+            significance: "Jeden z najważniejszych polskich wierszy patriotycznych, śpiewany jako pieśń przez pokolenia Polaków. Symbol oporu przeciwko germanizacji i rusyfikacji."
+        },
+        {
+            title: "O krasnoludkach i sierotce Marysi",
+            author: "Maria Konopnicka",
+            year: "1896",
+            description: "Ta baśń poetycka opowiada o sierotce Marysi, która spotyka krasnoludki w lesie. Krasnoludki pomagają dziewczynce i uczą ją wartości dobroci, ciężkiej pracy i uczciwości.",
+            significance: "Klasyka polskiej literatury dziecięcej, która wprowadziła polskie dzieci w świat fantazji i baśni. Postać Marysi stała się archetypem dobrego, pracowitego dziecka."
+        },
+        {
+            title: "Mendel Gdański",
+            author: "Stefan Żeromski",
+            year: "1898",
+            description: "Nowela przedstawia historię Żyda z Gdańska, Mendla, który podczas oblężenia miasta przez Napoleona wykazuje się heroizmem. Pomimo swojej odwagi, zostaje poniżony i odrzucony z powodu swojego pochodzenia.",
+            significance: "Ważny głos w dyskusji o antysemityzmie w Polsce. Żeromski pokazuje hipokryzję społeczeństwa, które wyzywa pomoc Żydów, ale odmawia im równych praw."
+        },
+        {
+            title: "Katarynka",
+            author: "Bolesław Prus",
+            year: "1880",
+            description: "To krótkie opowiadanie przedstawia starzejącego się kataryniarza w Warszawie. Gdy jego instrument zostaje zniszczony przez grubiana, traci środki do życia. Prus pokazuje obojętność wielkomiejskiego społeczeństwa na los słabszych.",
+            significance: "Jeden z najbardziej wzruszających utworów Prusa, symbol losu 'małego człowieka' w wielkim mieście. Wzruszający portret samotności i ubóstwa w kapitalistycznym społeczeństwie."
+        },
+        {
+            title: "Kamizelka",
+            author: "Bolesław Prus",
+            year: "1882",
+            description: "Opowiadanie o starym żołnierzu napoleońskim, który zachowuje jedynie kamizelkę z czasów swojej chwały. Wspominając wielkie bitwy i młodość, konfrontuje heroiczną przeszłość z obecnym ubóstwem i samotnością.",
+            significance: "Poruszająca refleksja o przemijalności chwały i okrucieństwie czasu. Prus mistrzowsko kontrastuje wielkie wydarzenia historyczne z tragedią jednostki."
+        },
+        {
+            title: "Antek",
+            author: "Bolesław Prus",
+            year: "1880",
+            description: "Nowela o chłopskim chłopcu, którego rodzina walczy z biedą i wyzyskiem. Gdy umiera matka Antka, ojciec desperacko próbuje znaleźć pieniądze na pogrzeb. Prus przedstawia dramatyczne warunki życia chłopów w zaborze rosyjskim.",
+            significance: "Naturalistyczny portret nędzy wiejskiej i wyzysku chłopów przez właścicieli ziemskich. Dzieło pokazuje realia życia na wsi polskiej w XIX wieku."
+        },
+        {
+            title: "Nad Jeziorem Czarnym",
+            author: "Władysław Broniewski",
+            year: "1932",
+            description: "Zbiór poezji opisującej podróż poety do Związku Radzieckiego. Broniewski, komunista i rewolucjonista, wyraża entuzjazm dla sowieckiego eksperymentu, ale także pokazuje nuty rozczarowania i niepokoju.",
+            significance: "Ważny dokument lewicowej poezji międzywojennej. Broniewski, mimo sympatii komunistycznych, zachował poetycką uczciwość i zauważył problemy systemu sowieckiego."
+        },
+        {
+            title: "Bagnet na broń",
+            author: "Władysław Broniewski",
+            year: "1943",
+            description: "Ten zbiór poezji wojennej przedstawia walkę Polski podczas II wojny światowej. Broniewski, jako żołnierz i poeta, łączy patriotyzm z rewolucyjnym przesłaniem, wzywając do walki o wolność i sprawiedliwość społeczną.",
+            significance: "Najważniejszy zbiór poezji Broniewskiego, łączący patriotyzm z ideologią lewicową. Wiersze stały się symbolem polskiego oporu podczas wojny."
+        },
+        {
+            title: "Śmierć pułkownika",
+            author: "Tadeusz Borowski",
+            year: "1946",
+            description: "Zbiór opowiadań z Auschwitz i innych obozów koncentracyjnych. Borowski przedstawia obóz z perspektywy więźnia-funkcyjnego, pokazując moralną degradację i mechanizmy przetrwania w ekstremalnych warunkach.",
+            significance: "Jedno z najbardziej brutalnych i szczerych świadectw Holokaustu. Borowski zerwał z heroiczną narracją, pokazując szarą strefę moralną życia w obozie."
+        },
+        {
+            title: "Proszę państwa do gazu",
+            author: "Tadeusz Borowski",
+            year: "1948",
+            description: "To słynne opowiadanie z cyklu obozowego przedstawia 'selekcję' nowo przybyłych więźniów w Auschwitz. Narrator, więzień-funkcyjny, opisuje proces bez emocji, pokazując otępienie moralne jako mechanizm przetrwania.",
+            significance: "Jedno z najbardziej przejmujących opisów masowej zagłady. Chłodny, bezosobowy ton paradoksalnie wzmacnia horror i pokazuje mechanizmy dehumanizacji."
+        },
+        {
+            title: "Rozdzióbią nas kruki, wrony",
+            author: "Konstanty Ildefons Gałczyński",
+            year: "1948",
+            description: "Zbiór poezji satirycznej i humorystycznej, w którym Gałczyński używa ironii, groteski i absurdu do komentowania rzeczywistości powojennej. Wiersze łączą kabaret z głęboką refleksją filozoficzną.",
+            significance: "Przykład mistrzostwa Gałczyńskiego w poezji satyrycznej. Mimo cenzury komunistycznej, poeta zachował dystans i humor, tworząc wieloznaczne teksty."
+        },
+        {
+            title: "Zielona Gęś",
+            author: "Konstanty Ildefons Gałczyński",
+            year: "1946-1953",
+            description: "Cykl felietonów poetyckich o fikcyjnym teatrzyku 'Zielona Gęś' w Zakopanem. Gałczyński tworzy absurdalne scenki, parodie i satyry, łącząc humor z poetyckością i ukrytą krytyką rzeczywistości.",
+            significance: "Kultowy cykl polskiej poezji kabaretowej, który wprowadził do literatury postaci jak Hermenegilda Kociubińska. Sposób Gałczyńskiego na zachowanie wolności artystycznej w czasach stalinizmu."
+        },
+        {
+            title: "Niobe",
+            author: "Konstanty Ildefons Gałczyński",
+            year: "1951",
+            description: "Poemat filozoficzny wykorzystujący mit grecki o Niobe, która straciła wszystkie dzieci. Gałczyński medytuje nad cierpieniem, stratą i nieuchronnością ludzkiego losu w pięknym, lirycznym języku.",
+            significance: "Jeden z najważniejszych poematów Gałczyńskiego, pokazujący jego umiejętność łączenia klasycznej mitologii z współczesną wrażliwością i głęboką refleksją filozoficzną."
+        },
+        {
+            title: "Traktat o łuskaniu fasoli",
+            author: "Wisława Szymborska",
+            year: "1986",
+            description: "Ten wiersz, będący tytułem późniejszego tomu, medytuje nad prostą czynnością łuskania fasoli jako metaforą życia, przemijania i cykliczności natury. Szymborska znajduje filozoficzną głębię w codziennych aktywnościach.",
+            significance: "Charakterystyczny dla stylu Szymborskiej sposób znajdowania nadzwyczajnego w zwyczajnym. Wiersz pokazuje jej zdolność do filozoficznej refleksji o egzystencji poprzez konkretne detale."
+        },
+        {
+            title: "Wielka liczba",
+            author: "Wisława Szymborska",
+            year: "1976",
+            description: "Wiersz kontemplujący ogrom świata i ludzkości, gdzie każdy człowiek jest jednocześnie jednostką i częścią 'wielkiej liczby'. Szymborska bada paradoks indywidualności i anonimowości w masowym społeczeństwie.",
+            significance: "Przykład filozoficznej poezji Szymborskiej, badającej miejsce jednostki we wszechświecie. Wiersz zyskał na znaczeniu w erze globalizacji i masowego społeczeństwa."
+        },
+        {
+            title: "Nic dwa razy",
+            author: "Wisława Szymborska",
+            year: "1957",
+            description: "Ten słynny wiersz medytuje nad niepowtarzalnością każdej chwili i niemożnością przeżycia życia ponownie. Szymborska celebruje unikalność doświadczenia, jednocześnie pokazując melancholię przemijania.",
+            significance: "Jeden z najbardziej znanych wierszy Szymborskiej, często cytowany i recytowany. Filozoficzna refleksja o czasie i przemijaniu wyrażona w prostym, dostępnym języku."
+        },
+        {
+            title: "Ludzie na moście",
+            author: "Wisława Szymborska",
+            year: "1986",
+            description: "Wiersz opisujący obraz 'Most Narodni' przedstawiający ludzi na moście przed wybuchem bomby. Szymborska medytuje nad momentem przed katastrofą, gdy ludzie jeszcze nie wiedzą o nadchodzącej tragedii.",
+            significance: "Poruszająca refleksja o nieświadomości przed katastrofą i kruchości ludzkiego życia. Wiersz zyskał dodatkowe znaczenie po atakach terrorystycznych XXI wieku."
+        },
+        {
+            title: "Kot w pustym mieszkaniu",
+            author: "Wisława Szymborska",
+            year: "1993",
+            description: "Wiersz z perspektywy kota, którego właściciel umarł. Opisując reakcję zwierzęcia na nieobecność człowieka, Szymborska w prosty sposób przedstawia doświadczenie straty i żałoby.",
+            significance: "Jeden z najbardziej wzruszających wierszy Szymborskiej, pokazujący jej umiejętność wyrażania głębokich emocji poprzez perspektywę nie-ludzką. Często czytany na pogrzebach."
+        },
+        {
+            title: "Wołanie do Yeti",
+            author: "Wisława Szymborska",
+            year: "1957",
+            description: "Wiersz zwraca się do mitycznego Yeti, prosząc go by nie pokazywał się ludziom. Szymborska używa tego motywu do refleksji o ludzkiej cywilizacji, która niszczy wszystko, co tajemnicze i dzikie.",
+            significance: "Wczesny przykład ekologicznej świadomości w poezji Szymborskiej. Krytyka ludzkiego imperializmu nad naturą i zachłanności cywilizacyjnej."
+        },
+        {
+            title: "Koniec i początek",
+            author: "Wisława Szymborska",
+            year: "1993",
+            description: "Wiersz o tym, co dzieje się po wojnie - sprzątaniu ruin, odbudowie, stopniowym zapominaniu. Szymborska pokazuje, jak życie toczy się dalej po katastrofie, a pamięć o tragedii stopniowo zanika.",
+            significance: "Ważna refleksja o mechanizmach pamięci zbiorowej i zapominania. Wiersz często interpretowany w kontekście wojen w byłej Jugosławii i innych konfliktów końca XX wieku."
+        },
+        {
+            title: "Miłość szczęśliwa",
+            author: "Wisława Szymborska",
+            year: "1972",
+            description: "Wiersz celebrujący szczęśliwą miłość, która jest tak rzadka, że zasługuje na uwagę. Szymborska używa ironii i prostych słów, żeby wyrazić niezwykłość zwyczajnego szczęścia dwojga ludzi.",
+            significance: "Jeden z najbardziej znanych wierszy miłosnych Szymborskiej. Paradoksalnie wykorzystuje ironiczny ton do wyrażenia szczerych emocji i celebracji miłości."
+        },
+        {
+            title: "Dwaj panowie B.",
+            author: "Zbigniew Herbert",
+            year: "1962",
+            description: "Wiersz przedstawiający dwóch ludzi o tym samym nazwisku - jednego, który zdradził wartości, i drugiego, który pozostał wierny. Herbert bada kwestię kompromisu moralnego i integralności w trudnych czasach.",
+            significance: "Charakterystyczny dla Herberta wiersz o moralnych wyborach. Niejednoznaczność i brak osądzenia pokazują złożoność dylematów etycznych w totalitarnym systemie."
+        },
+        {
+            title: "Pan Cogito - Potęga smaku",
+            author: "Zbigniew Herbert",
+            year: "1974",
+            description: "Wiersz o sile estetycznego i moralnego 'smaku', który pozwala odróżnić dobro od zła, piękno od brzydoty. Pan Cogito twierdzi, że smak jest ostateczną barierą przeciwko totalitaryzmowi i kiczowi.",
+            significance: "Kluczowy wiersz dla zrozumienia filozofii Herberta. 'Smak' jako kategoria moralna i estetyczna stał się ważnym pojęciem w polskiej kulturze opozycyjnej."
+        },
+        {
+            title: "Przesłanie Pana Cogito",
+            author: "Zbigniew Herbert",
+            year: "1974",
+            description: "Jeden z najbardziej znanych wierszy Herberta, będący etycznym testamentem. Pan Cogito wzywa do wierności wartościom, odwagi moralnej i wytrwałości mimo porażek i cierpienia.",
+            significance: "Manifesto etyczny pokolenia polskiej inteligencji. Wiersz stał się symbolem oporu moralnego przeciwko komunizmowi i zachęcił wielu do działania w opozycji."
+        },
+        {
+            title: "Moja ojczyzna",
+            author: "Adam Zagajewski",
+            year: "1992",
+            description: "Wiersz medytujący nad złożonym pojęciem ojczyzny - jednocześnie miejscem urodzenia, źródłem tożsamości i przedmiotem krytyki. Zagajewski bada ambiwalentną relację intelektualisty z narodem.",
+            significance: "Ważny głos w dyskusji o patriotyzmie po transformacji 1989 roku. Zagajewski pokazuje możliwość krytycznego, ale nie cynicznych stosunku do ojczyzny."
+        },
+        {
+            title: "Spróbuj opiewać okaleczony świat",
+            author: "Adam Zagajewski",
+            year: "2002",
+            description: "Wiersz napisany po atakach 11 września 2001 roku, wzywający do celebrowania piękna mimo tragedii i zła w świecie. Zagajewski argumentuje za poezją afirmacji życia nawet w obliczu cierpienia.",
+            significance: "Jeden z najbardziej znanych wierszy Zagajewskiego, cytowany na całym świecie po atakach terrorystycznych. Opublikowany w 'New Yorker', zyskał międzynarodową sławę."
+        },
+        {
+            title: "Do Republiki Polskiej",
+            author: "Cyprian Kamil Norwid",
+            year: "1859",
+            description: "Wiersz patriotyczny wzywający do wewnętrznej pracy nad sobą i budowania wielkości moralnej narodu. Norwid krytykuje powstańczą romantyczność i proponuje program etycznej odnowy Polski.",
+            significance: "Ważny głos w dyskusji o drogach do niepodległości. Norwid proponował alternatywę dla powstańczego romantyzmu - pracę organiczną i moralną doskonałość."
+        },
+        {
+            title: "Fortepian Szopena",
+            author: "Cyprian Kamil Norwid",
+            year: "1865",
+            description: "Poemat o instrumencie Chopina, który staje się symbolem polskiej kultury i cierpienia. Norwid medytuje nad rolą sztuki w zachowaniu tożsamości narodowej podczas zaborów.",
+            significance: "Arcydzieło Norwida, łączące refleksję o muzyce z narodowym przesłaniem. Chopin i jego fortepian stają się metaforą polskiego ducha przetrwania."
+        },
+        {
+            title: "Vade-mecum",
+            author: "Cyprian Kamil Norwid",
+            year: "1866",
+            description: "Cykl 100 wierszy stanowiący poetyckie i filozoficzne kompendium. Norwid porusza tematy religijne, narodowe, społeczne i osobiste w nowatorskiej formie, która nie została zrozumiana przez współczesnych.",
+            significance: "Największe dzieło Norwida, niedocenione za jego życia. Dopiero XX-wieczni moderniści odkryli nowatorstwo poetyki Norwida i uznali go za prekursora."
+        },
+        {
+            title: "Bema pamięci żałobny rapsod",
+            author: "Cyprian Kamil Norwid",
+            year: "1851",
+            description: "Poemat ku czci generała Józefa Bema, powstańca i wojownika o wolność. Norwid celebruje Bema jako wzór bezinteresownej służby ideałom i walki o wolność różnych narodów.",
+            significance: "Ważny przykład poezji patriotycznej Norwida, pokazujący jego wizję bohaterstwa jako służby uniwersalnym wartościom, nie tylko wąsko pojętemu narodowi."
+        },
+        {
+            title: "Ballady i romanse",
+            author: "Adam Mickiewicz",
+            year: "1822",
+            description: "Ten zbiór zapoczątkował polski romantyzm, wprowadzając motywy ludowe, baśniowe i fantastyczne. Ballady jak 'Świtezianka' i 'Romantyczność' ustanowiły nowy język poetycki i wrażliwość.",
+            significance: "Manifest polskiego romantyzmu, który zrewolucjonizował polską poezję. Mickiewicz wprowadził folklor i fantastykę jako równoprawne źródła prawdy obok rozumu."
+        },
+        {
+            title: "Grażyna",
+            author: "Adam Mickiewicz",
+            year: "1823",
+            description: "Poemat o litewskiej księżnej Grażynie, która przebiera się za męża i prowadzi wojsko do walki z Krzyżakami. Historia kobiecej odwagi i poświęcenia dla ojczyzny osadzona w średniowiecznej Litwie.",
+            significance: "Ważny przykład romantycznego feminizmu i celebracji kobiecej siły. Grażyna stała się symbolem patriotycznych kobiet walczących o niepodległość."
+        },
+        {
+            title: "Reduta Ordona",
+            author: "Adam Mickiewicz",
+            year: "1832",
+            description: "Wiersz opowiadający o poświęceniu powstańców listopadowych, którzy wysadzili redutę razem z sobą, by nie oddać jej wrogowi. Mickiewicz celebruje patriotyczne poświęcenie i heroizm.",
+            significance: "Symbol polskiego etosu powstańczego i poświęcenia dla ojczyzny. Wiersz stał się częścią narodowej mitologii martyrologicznej."
+        },
+        {
+            title: "Do Matki Polki",
+            author: "Adam Mickiewicz",
+            year: "1830",
+            description: "Wiersz wzywający polskie matki do wychowywania synów gotowych do poświęcenia życia za ojczyznę. Mickiewicz celebruje spartański ideał matki-patriotki.",
+            significance: "Kontrowersyjny wiersz, który ukształtował polski kult martyrologii. Krytykowany współcześnie za gloryfikację poświęcenia młodych istnień."
         }
     ];
 
@@ -662,6 +1063,10 @@
         const daysSinceStart = getDaysSinceStart();
         const todayIndex = Math.min(daysSinceStart, classics.length - 1);
         displayClassic(todayIndex);
+    }
+
+    function setDailyReminder() {
+        alert('Aby otrzymywać codzienne przypomnienia:\n\niPhone: Otwórz aplikację Przypomnienia → Dodaj nowe przypomnienie → Ustaw tytuł "Przeczytaj dzisiejszą klasykę" → Ustaw powtarzanie "Codziennie" o wybranej godzinie\n\nAndroid: Otwórz Google Calendar lub Przypomnienia → Dodaj nowe wydarzenie → Ustaw tytuł "Przeczytaj dzisiejszą klasykę" → Ustaw powtarzanie "Codziennie" o wybranej godzinie');
     }
 
     // Initialize with today's classic
