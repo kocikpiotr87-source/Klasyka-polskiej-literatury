@@ -1,193 +1,675 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Polski Klasyk Dnia</title>
-  <style>
-    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-    body { margin: 0; background: #0b0f19; color: #e9eefc; }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 28px 18px 44px; }
-    .card { background: #121a2a; border: 1px solid #22304d; border-radius: 16px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    h1 { margin: 0 0 10px; font-size: 22px; letter-spacing: .2px; }
-    .meta { opacity: .82; font-size: 14px; margin-bottom: 14px; }
-    .title { font-size: 26px; margin: 6px 0 2px; }
-    .author { font-size: 16px; opacity: .9; margin: 0 0 12px; }
-    .desc { font-size: 18px; line-height: 1.45; margin: 0 0 16px; }
-    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-    button {
-      background: #2b66ff; color: white; border: 0; border-radius: 12px;
-      padding: 10px 14px; font-weight: 650; cursor: pointer;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codziennie Polska Klasyka Literacka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Georgia', serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
     }
-    button.secondary { background: transparent; border: 1px solid #3a4f7e; color: #e9eefc; }
-    .foot { margin-top: 14px; opacity: .75; font-size: 13px; }
-    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #1c2740; border: 1px solid #2a3a60; }
-    a { color: #9ab6ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
+    
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    
+    .header {
+        background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+        color: white;
+        padding: 30px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .date-display {
+        font-size: 1.1em;
+        opacity: 0.95;
+        font-style: italic;
+    }
+    
+    .content {
+        padding: 40px;
+    }
+    
+    .day-number {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    
+    .book-title {
+        font-size: 2em;
+        color: #2d3748;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .author {
+        font-size: 1.3em;
+        color: #718096;
+        margin-bottom: 5px;
+        font-style: italic;
+    }
+    
+    .year {
+        font-size: 1em;
+        color: #a0aec0;
+        margin-bottom: 25px;
+    }
+    
+    .description {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #4a5568;
+        text-align: justify;
+        margin-bottom: 25px;
+    }
+    
+    .significance {
+        background: #f7fafc;
+        border-left: 4px solid #dc143c;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+    
+    .significance-title {
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+    
+    .significance-text {
+        color: #4a5568;
+        line-height: 1.6;
+    }
+    
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 40px 30px 40px;
+        gap: 10px;
+    }
+    
+    .nav-button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .nav-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .nav-button:disabled {
+        background: #cbd5e0;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .footer {
+        text-align: center;
+        padding: 20px;
+        background: #f7fafc;
+        color: #718096;
+        font-size: 0.9em;
+    }
+    
+    @media (max-width: 600px) {
+        .book-title {
+            font-size: 1.5em;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .navigation {
+            padding: 15px 25px 20px 25px;
+        }
+    }
+</style>
+```
+
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>📚 Polski Klasyk Dnia</h1>
-      <div class="meta">
-        Dzisiaj: <span class="pill" id="today"></span>
-        &nbsp;•&nbsp; Dzień cyklu: <span class="pill" id="dayIndex"></span>
-        &nbsp;•&nbsp; Pozycja: <span class="pill" id="itemIndex"></span>
-      </div>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Polskie Klasyki Literackie</h1>
+            <div class="date-display" id="currentDate"></div>
+        </div>
 
-      <div class="title" id="workTitle">—</div>
-      <div class="author" id="workAuthor">—</div>
-      <p class="desc" id="workDesc">—</p>
-
-      <div class="row">
-        <button id="btnRandom">Losuj</button>
-        <button class="secondary" id="btnPrev">⬅︎ Poprzedni</button>
-        <button class="secondary" id="btnNext">Następny ➡︎</button>
-      </div>
-
-      <div class="foot">
-        Tip: ustaw datę startu w kodzie (<code>START_DATE</code>), a potem wrzuć plik na GitHub Pages / SharePoint / gdziekolwiek.
-      </div>
+```
+    <div class="content">
+        <div class="day-number" id="dayNumber"></div>
+        <h2 class="book-title" id="bookTitle"></h2>
+        <div class="author" id="author"></div>
+        <div class="year" id="year"></div>
+        <div class="description" id="description"></div>
+        
+        <div class="significance">
+            <div class="significance-title">Znaczenie literackie:</div>
+            <div class="significance-text" id="significance"></div>
+        </div>
     </div>
-  </div>
+    
+    <div class="navigation">
+        <button class="nav-button" id="prevBtn" onclick="changeDay(-1)">← Poprzednie</button>
+        <button class="nav-button" id="todayBtn" onclick="goToToday()">Dzisiaj</button>
+        <button class="nav-button" id="nextBtn" onclick="changeDay(1)">Następne →</button>
+    </div>
+    
+    <div class="footer">
+        Odkrywaj bogate dziedzictwo polskiej literatury, jeden klasyk na raz
+    </div>
+</div>
 
-  <script>
-    // USTAW TO: od tej daty liczymy "dzień cyklu"
-    // Format: YYYY-MM-DD
-    const START_DATE = "2026-01-01";
-
-    // Lista klasyków (możesz dopisywać / usuwać bez stresu)
-    // Każdy wpis: tytuł, autor, rok/okres (opcjonalnie), opis (krótko, 1–2 zdania)
-    const CLASSICS = [
-      { t:"Pan Tadeusz", a:"Adam Mickiewicz", y:"1834", d:"Epopeja narodowa o świecie szlacheckim na Litwie, pełna humoru, nostalgii i sporów o honor. Pod spodem: pytanie, czy da się jeszcze poskładać wspólnotę po katastrofie historii." },
-      { t:"Dziady (cz. II i III)", a:"Adam Mickiewicz", y:"1823–1832", d:"Rytuał, widma i polityczny krzyk. Romantyczny dramat o winie, cierpieniu i buncie, w którym metafizyka miesza się z historią jak w polskim blenderze." },
-      { t:"Konrad Wallenrod", a:"Adam Mickiewicz", y:"1828", d:"Opowieść o walce podstępem i moralnej cenie zwycięstwa. Klasyk dylematu: czy cel uświęca środki, gdy stawką jest wolność?" },
-      { t:"Balladyna", a:"Juliusz Słowacki", y:"1839", d:"Krwawe ambicje w baśniowym kostiumie. Dramat o władzy i sumieniu, gdzie jedna decyzja uruchamia lawinę zbrodni." },
-      { t:"Kordian", a:"Juliusz Słowacki", y:"1834", d:"Młody idealista chce zbawić naród, ale potyka się o własną psychikę. Dramat o dojrzewaniu, lęku i wielkich planach zderzonych z rzeczywistością." },
-      { t:"Nie-Boska komedia", a:"Zygmunt Krasiński", y:"1835", d:"Wizja konfliktu klas i kryzysu wartości, zanim to było modne. Dzieło o rozpadzie świata idei i o tym, jak łatwo zostać więźniem własnej roli." },
-      { t:"Zemsta", a:"Aleksander Fredro", y:"1834", d:"Najlepszy dowód, że kłótnia o mur może mieć dramaturgię tragedii — tylko śmieszniejszą. Komedia charakterów i polskiej ‘małej wielkości’." },
-      { t:"Śluby panieńskie", a:"Aleksander Fredro", y:"1832", d:"Miłość kontra deklaracje ‘nigdy przenigdy’. Lekka komedia o tym, jak ideały przegrywają z życiem — i zwykle dobrze na tym wychodzą." },
-      { t:"Lalka", a:"Bolesław Prus", y:"1890", d:"Warszawa, awans społeczny i uczucie, które nie chce się ułożyć. Powieść o modernizacji, klasach i samotności człowieka, który ‘mógłby’, ale nie potrafi." },
-      { t:"Faraon", a:"Bolesław Prus", y:"1897", d:"Polityczny thriller w starożytnym Egipcie: władza, kapłani, propaganda i ekonomia. Klasyk o mechanizmach państwa, które działają niezależnie od dobrych chęci." },
-      { t:"Emancypantki", a:"Bolesław Prus", y:"1894", d:"Powieść o kobietach szukających miejsca w świecie, który lubi je pouczać. Zaskakująco aktualna analiza społecznych oczekiwań i realnych kosztów niezależności." },
-      { t:"Chłopi", a:"Władysław Reymont", y:"1904–1909", d:"Cztery pory roku, wieś jako kosmos i ludzkie namiętności bez filtra. Monument o pracy, tradycji i konflikcie między jednostką a wspólnotą." },
-      { t:"Ziemia obiecana", a:"Władysław Reymont", y:"1899", d:"Łódź przemysłowa: pieniądz, cynizm i tempo, które mieli wszystko zmielić. Powieść o kapitalizmie w wersji ‘hard mode’." },
-      { t:"Syzyfowe prace", a:"Stefan Żeromski", y:"1897", d:"Dorastanie w cieniu rusyfikacji i szkolnej indoktrynacji. Historia o przebudzeniu świadomości i o tym, że język to nie tylko narzędzie, ale tożsamość." },
-      { t:"Ludzie bezdomni", a:"Stefan Żeromski", y:"1899", d:"Lekarz-ideowiec walczy o ‘naprawę świata’ i przegrywa z kosztami własnych wyborów. Powieść o etyce, ambicji i cenie konsekwencji." },
-      { t:"Przedwiośnie", a:"Stefan Żeromski", y:"1924", d:"Młody człowiek wraca do kraju-mitu i zderza się z biedą, chaosem i polityką. Powieść o rozczarowaniu i o tym, że ‘szklane domy’ bywają makietą." },
-      { t:"Popioły", a:"Stefan Żeromski", y:"1904", d:"Epopeja napoleońska bez cukru: wojna jako brudny mechanizm, patriotyzm jako skomplikowana emocja. Duża książka o dużych złudzeniach." },
-      { t:"Wesele", a:"Stanisław Wyspiański", y:"1901", d:"Polska w pigułce: inteligencja i chłopi na jednej imprezie, a duchy dopominają się rachunków. Dramat o niemocy, symbolach i narodowym ‘zaraz, zaraz’." },
-      { t:"Noc listopadowa", a:"Stanisław Wyspiański", y:"1904", d:"Powstanie i mit w teatralnej maszynie symboli. Wyspiański pokazuje historię jak spektakl: piękny, groźny i bezlitosny." },
-      { t:"Moralność pani Dulskiej", a:"Gabriela Zapolska", y:"1906", d:"Hipokryzja w mieszczańskim salonie, czyli ‘brudy pierze się w domu’. Komedia, która boli, bo aż za dobrze zna swoje postacie." },
-      { t:"Granica", a:"Zofia Nałkowska", y:"1935", d:"Awans, romans i konsekwencje, których nikt nie chce brać na siebie. Psychologiczna powieść o odpowiedzialności i społecznej grze pozorów." },
-      { t:"Medaliony", a:"Zofia Nałkowska", y:"1946", d:"Krótkie, wstrząsające opowiadania o Zagładzie i dehumanizacji. Minimalizm formy, maksimum ciężaru." },
-      { t:"Sklepy cynamonowe", a:"Bruno Schulz", y:"1934", d:"Proza jak sen: mityzacja codzienności, dzieciństwo i fantazja, która przerabia świat na sztukę. Schulz robi z ulicy kosmos." },
-      { t:"Sanatorium pod Klepsydrą", a:"Bruno Schulz", y:"1937", d:"Czas się rozciąga, cofa i psuje jak zegarek w kieszeni. Opowieści o pamięci, ojcu i świecie, który jest bardziej metaforą niż mapą." },
-      { t:"Ferdydurke", a:"Witold Gombrowicz", y:"1937", d:"‘Upupianie’ w czystej postaci: forma narzucona człowiekowi przez innych. Powieść-kopniak o tym, jak społeczeństwo robi nam minę, zanim zdążymy ją wybrać." },
-      { t:"Trans-Atlantyk", a:"Witold Gombrowicz", y:"1953", d:"Emigracyjna satyra na patriotyzm, pozę i narodowe rytuały. Stylizowana gawęda, która bawi i kłuje jednocześnie." },
-      { t:"Pornografia", a:"Witold Gombrowicz", y:"1960", d:"Manipulacja, erotyczne napięcie i moralny niepokój w okupacyjnej scenerii. Powieść o grze spojrzeń i o tym, jak łatwo sterować cudzym losem." },
-      { t:"Proces", a:"— (tu zostawiamy miejsce na polskie klasyki, nie Kafkę 😉)", y:"", d:"Jeśli chcesz, mogę dorzucić też ‘klasyki światowe’, ale tu trzymamy się Polski jak barszczu w Wigilię." },
-      { t:"Kamienie na szaniec", a:"Aleksander Kamiński", y:"1943", d:"Reportażowo-opowieściowa historia harcerzy w okupowanej Warszawie. O przyjaźni, odwadze i cenie wyborów, których nikt nie powinien musieć podejmować." },
-      { t:"Inny świat", a:"Gustaw Herling-Grudziński", y:"1951", d:"Wstrząsające świadectwo łagru: głód, strach i degrengolada moralna. Książka o człowieku poddanym testowi, którego nie da się zdać ‘ładnie’." },
-      { t:"Zdążyć przed Panem Bogiem", a:"Hanna Krall", y:"1977", d:"Rozmowa-rzeka o powstaniu w getcie i etyce ratowania życia. Oszczędny styl, wielkie pytania, brak łatwych odpowiedzi." },
-      { t:"Pamiętnik z powstania warszawskiego", a:"Miron Białoszewski", y:"1970", d:"Powstanie z perspektywy cywila: codzienność, chaos, schrony i język ulicy. Antybohaterskie, przez co bardziej prawdziwe." },
-      { t:"Sól ziemi", a:"Józef Wittlin", y:"1935", d:"I wojna światowa widziana oczami prostego człowieka w trybach imperium. Powieść o absurdzie, lęku i tym, jak historia mieli jednostki." },
-      { t:"Noce i dnie", a:"Maria Dąbrowska", y:"1932–1934", d:"Saga o rodzinie i przemianach społecznych, z Barbarą Niechcic jako ikoną codziennej siły i frustracji. Wielka powieść o małym życiu, które okazuje się wielkie." },
-      { t:"Cudzoziemka", a:"Maria Kuncewiczowa", y:"1936", d:"Portret kobiety, której życie rozsadza niespełnienie i ambicja. Mocna, psychologiczna opowieść o krzywdach przekazywanych dalej." },
-      { t:"Pożegnanie jesieni", a:"Stanisław I. Witkiewicz (Witkacy)", y:"1927", d:"Katastroficzna wizja świata, w którym kultura się rozpada, a ludzie szukają sensu w skrajnościach. Witkacy: ostro, dziwnie, celnie." },
-      { t:"Szewcy", a:"Stanisław I. Witkiewicz (Witkacy)", y:"1934", d:"Dramat o rewolucji, władzy i groteskowym mechanizmie ideologii. Tu każdy chce rządzić, a system i tak robi swoje." },
-      { t:"Kariera Nikodema Dyzmy", a:"Tadeusz Dołęga-Mostowicz", y:"1932", d:"Satyra na elity i awans przez przypadek, bez kompetencji, ale z tupetem. Książka wciąż aktualna — co jest i śmieszne, i trochę straszne." },
-      { t:"Znachor", a:"Tadeusz Dołęga-Mostowicz", y:"1937", d:"Historia upadku i odrodzenia, popularna jak piosenka, a solidna jak powieść obyczajowa. O godności, pamięci i drugich szansach." },
-      { t:"Chłopcy z Placu Broni (polski kontekst: lektura, ale nie polska) — pomijamy", a:"", y:"", d:"Trzymamy zasadę: polskie klasyki. Jeśli chcesz listę ‘lektur szkolnych ogólnie’, powiem i zrobimy osobny tryb." },
-      { t:"Odprawa posłów greckich", a:"Jan Kochanowski", y:"1578", d:"Renesansowy dramat polityczny: odpowiedzialność władzy i państwa. Starożytna Troja mówi tu bardzo współczesnym głosem." },
-      { t:"Treny", a:"Jan Kochanowski", y:"1580", d:"Cykl poetycki po śmierci Urszulki: rozpacz, bunt i próba odbudowy sensu. Klasyka, która nie udaje, że ‘będzie dobrze’ — tylko przechodzi przez ciemność." },
-      { t:"Fraszki", a:"Jan Kochanowski", y:"XVI w.", d:"Krótkie formy o życiu, śmierci, głupocie i radości. Inteligentne, zadziorne, czasem zaskakująco świeże." },
-      { t:"Sonety krymskie", a:"Adam Mickiewicz", y:"1826", d:"Egzotyczny pejzaż jako lustro emocji wygnańca. Poezja podróży, tęsknoty i zachwytu, który boli." },
-      { t:"Quo vadis", a:"Henryk Sienkiewicz", y:"1896", d:"Rzym Nerona, miłość i starcie wartości w epoce przemocy. Powieść historyczna z rozmachem i moralnym kręgosłupem." },
-      { t:"Potop", a:"Henryk Sienkiewicz", y:"1886", d:"Przygoda, wojna i przemiana bohatera na tle potężnej historii. Sienkiewicz robi z historii rollercoaster, a jednak coś ważnego zostaje." },
-      { t:"Krzyżacy", a:"Henryk Sienkiewicz", y:"1900", d:"Konflikt z Zakonem i mit zwycięstwa. Powieść, która budowała wyobraźnię narodową — dziś warto czytać ją też ‘krytycznie’, nie tylko ‘ku pokrzepieniu’." },
-      { t:"Nad Niemnem", a:"Eliza Orzeszkowa", y:"1888", d:"Powieść o pamięci powstania, pracy u podstaw i wspólnocie zbudowanej na codzienności. Piękne krajobrazy, ale i twarda lekcja społeczna." },
-      { t:"Gloria victis", a:"Eliza Orzeszkowa", y:"1910", d:"Nowela o powstaniu styczniowym: patos i żałoba bez tanich chwytów. Głos pamięci, który nie pozwala łatwo zapomnieć." },
-      { t:"Janko Muzykant", a:"Henryk Sienkiewicz", y:"1879", d:"Krótka i bolesna opowieść o talencie zduszonym przez biedę i brutalność systemu. Klasyk empatii: mało stron, dużo gniewu." },
-      { t:"Antek", a:"Bolesław Prus", y:"1880", d:"Chłopiec z talentem do techniki przegrywa z realiami wsi i edukacji ‘na niby’. Opowiadanie o marnowaniu potencjału — temat wiecznie żywy." },
-      { t:"Katarynka", a:"Bolesław Prus", y:"1880", d:"Historia o przemianie serca pod wpływem prostego dźwięku i cudzej krzywdy. Prus w miniaturze: humanizm bez lukru." },
-      { t:"Latarnik", a:"Henryk Sienkiewicz", y:"1881", d:"Samotność emigranta i jedno wzruszenie, które burzy cały porządek. Opowiadanie o tęsknocie tak silnej, że aż niebezpiecznej." },
-      { t:"W pustyni i w puszczy", a:"Henryk Sienkiewicz", y:"1911", d:"Przygoda, podróż i egzotyka epoki. Dziś warto czytać także z rozmową o perspektywie kolonialnej — klasyk, który ‘pracuje’ na dwóch poziomach." },
-      { t:"Bajki", a:"Ignacy Krasicki", y:"XVIII w.", d:"Krótkie, ostre jak brzytwa morały o ludzkich wadach. Krasicki nie krzyczy — on tylko podaje prawdę w eleganckim opakowaniu." },
-      { t:"Mikołaja Doświadczyńskiego przypadki", a:"Ignacy Krasicki", y:"1776", d:"Jedna z pierwszych polskich powieści nowożytnych: satyra, podróż i edukacja. O tym, jak człowiek dojrzewa, gdy świat przestaje go głaskać." },
-      { t:"Kwiaty polskie", a:"Julian Tuwim", y:"1949 (wyd.)", d:"Poemat o pamięci, Łodzi i polskości widzianej z czułością i ironią. Nostalgia, która potrafi też ugryźć." },
-      { t:"Poezje wybrane", a:"Czesław Miłosz", y:"XX w.", d:"Miłosz łączy historię, metafizykę i codzienność, pytając o sens po katastrofach wieku. Dobra dawka myślenia bez zadęcia." },
-      { t:"Ocalenie", a:"Tadeusz Różewicz", y:"1947", d:"Poezja po wojnie, kiedy język się łamie, a patos brzmi fałszywie. Różewicz pisze ‘mniej’, żeby powiedzieć ‘więcej’." },
-      { t:"Traktat poetycki", a:"Czesław Miłosz", y:"1957", d:"Esej wierszem o literaturze, historii i odpowiedzialności twórcy. Ambitne, gęste, ale daje satysfakcję jak rozwiązana łamigłówka." },
-      { t:"Kartoteka", a:"Tadeusz Różewicz", y:"1960", d:"Dramat o tożsamości człowieka po traumie, rozbity na sceny jak na fiszki. Forma sama mówi tu: ‘porządek nie wróci’." },
-      { t:"Szkice piórkiem", a:"Andrzej Bobkowski", y:"1957", d:"Dziennik z Francji czasu wojny: wolność, rower, obserwacja świata i niezgoda na zniewolenie umysłu. Inteligencja i energia na każdej stronie." }
+<script>
+    const classics = [
+        {
+            title: "Pan Tadeusz",
+            author: "Adam Mickiewicz",
+            year: "1834",
+            description: "Często nazywany ostatnim wielkim eposem w literaturze europejskiej, ten arcydzieło opowiada historię dwóch zwaśnionych rodzin szlacheckich na Litwie. Osadzone w czasie inwazji Napoleona na Rosję w 1812 roku, łączy tematy miłości, honoru i polskiej tożsamości narodowej podczas zaborów.",
+            significance: "Uważany za polski epos narodowy, utrwalił polski romantyczny nacjonalizm i pozostaje lekturą obowiązkową w polskich szkołach. Jego pierwsze słowa 'Litwo! Ojczyzno moja!' zna każdy Polak."
+        },
+        {
+            title: "Lalka",
+            author: "Bolesław Prus",
+            year: "1890",
+            description: "Ta monumentalna powieść śledzi losy Stanisława Wokulskiego, zamożnego kupca, który zakochuje się w arystokratce Izabeli. Poprzez jego walkę o pokonanie przepaści klasowej, Prus maluje szczegółowy portret warszawskiego społeczeństwa końca XIX wieku, zgłębiając tematy ambicji, miłości i przemian społecznych.",
+            significance: "Uznawana za jedną z największych polskich powieści, mistrzowsko łączy realizm z głębią filozoficzną, oferując przenikliwą analizę polskiego społeczeństwa w czasach zaborów i badając konflikt między idealizmem a materializmem."
+        },
+        {
+            title: "Quo Vadis",
+            author: "Henryk Sienkiewicz",
+            year: "1896",
+            description: "Osadzona w starożytnym Rzymie w czasach panowania Nerona, ta powieść historyczna przedstawia prześladowania wczesnych chrześcijan. Historia miłosna między Markiem Vinicjuszem, rzymskim patrycjuszem, a Ligią, chrześcijanką, rozgrywa się na tle pożaru Rzymu i brutalnych widowisk w Koloseum.",
+            significance: "Przyniosła Sienkiewiczowi Nagrodę Nobla w 1905 roku, stając się międzynarodowym bestsellerem przetłumaczonym na ponad 50 języków. Zwróciła uwagę światowej publiczności na polską literaturę i pozostaje jedną z najczęściej czytanych polskich powieści na świecie."
+        },
+        {
+            title: "Trylogia: Ogniem i mieczem",
+            author: "Henryk Sienkiewicz",
+            year: "1884",
+            description: "Pierwszy tom słynnej Trylogii Sienkiewicza, osadzony w XVII-wiecznym powstaniu Chmielnickiego. Śledzi przygody Jana Skrzetuskiego, rycerza Rzeczypospolitej, podczas kozackiego buntu, przedstawiając epickie bitwy, romans i porwanie jego ukochanej Heleny przez Kozaka Bohua.",
+            significance: "Część najbardziej umiłowanej trylogii historycznej Polski, pomogła podtrzymać polskiego ducha narodowego podczas zaborów, celebrując heroiczną przeszłość i wojskową chwałę kraju."
+        },
+        {
+            title: "Trylogia: Potop",
+            author: "Henryk Sienkiewicz",
+            year: "1886",
+            description: "Drugi tom przedstawia polskie 'potopu szwedzkiego' z lat 50. XVII wieku, śledząc złożoną postać Andrzeja Kmicica, który przemienia się z lekkomyślnego szlachcica w bohatera narodowego. Powieść koncentruje się na obronie Jasnej Góry i walce przeciwko szwedzkiej inwazji.",
+            significance: "Ta część ukazuje tematy odkupienia i patriotyzmu, przedstawiając jedne z najbardziej pamiętnych postaci w polskiej literaturze i wzmacniając obraz Polski jako narodu zdolnego do pokonywania ogromnych przeciwności."
+        },
+        {
+            title: "Trylogia: Pan Wołodyjowski",
+            author: "Henryk Sienkiewicz",
+            year: "1888",
+            description: "Ostatni tom kronikuje wojny Polski z Imperium Osmańskim w latach 70. XVII wieku, kulminujące w odsieczy wiedeńskiej. Historia śledzi kilka postaci, w tym dzielnego Pana Wołodyjowskiego, w ich obronie południowo-wschodnich rubieży przed tureckimi i tatarskimi najazdami.",
+            significance: "Dopełnia wielką historyczną panoramę Sienkiewicza przedstawiającą XVII-wieczną Polskę, podkreślając rolę Rzeczypospolitej jako 'przedmurza chrześcijaństwa' i celebrując polską waleczność wojskową w obronie Europy."
+        },
+        {
+            title: "Chłopi",
+            author: "Władysław Reymont",
+            year: "1904-1909",
+            description: "Ta czterotomowa powieść śledzi życie w polskiej wsi przez cztery pory roku, przedstawiając zmagania chłopa Boryny i jego rodziny. Reymont tworzy żywy portret życia wiejskiego, uchwytując tradycyjne zwyczaje, hierarchie społeczne i relację między człowiekiem a naturą.",
+            significance: "Przyniosła Reymontowi Nagrodę Nobla w 1924 roku za epickie przedstawienie życia chłopskiego. Dzieło jest chwalone za naturalistyczny detal i liryczne opisy, które wyniosły wiejskie życie polskie na poziom wysokiej literatury."
+        },
+        {
+            title: "Ferdydurke",
+            author: "Witold Gombrowicz",
+            year: "1937",
+            description: "Ta awangardowa powieść śledzi trzydziestoletniego Józia, który zostaje niewytłumaczalnie przemieniony z powrotem w ucznia przez pedantycznego profesora. Absurdalna narracja satyryzuje polskie społeczeństwo, kulturalne pretensje i walkę między dojrzałością a niedojrzałością, mieszając dyskurs filozoficzny z groteskową komedią.",
+            significance: "Przełomowe dzieło literatury modernistycznej, które zakwestionowało konwencjonalne formy i stało się niezwykle wpływowe w literaturze europejskiej. Krytyka Gombrowicza sztuczności kulturowej i eksploracja ludzkiej niedojrzałości rezonuje międzynarodowo."
+        },
+        {
+            title: "Zniewolony umysł",
+            author: "Czesław Miłosz",
+            year: "1953",
+            description: "Napisane na wygnaniu, to filozoficzne i polityczne dzieło bada, jak intelektualiści w komunistycznej Europie Wschodniej racjonalizowali swoją akceptację totalitaryzmu. Miłosz analizuje procesy mentalne, przez które wykształceni ludzie podporządkowują się opresyjnej ideologii, używając przykładów polskich pisarzy, których znał.",
+            significance: "Fundamentalny tekst zimnej wojny, który dostarczył kluczowych spostrzeżeń na temat totalitarnej psychologii. Dzieło wpłynęło na zachodnie zrozumienie systemów komunistycznych i przyczyniło się do przyznania Miłoszowi Nagrody Nobla w 1980 roku."
+        },
+        {
+            title: "Solaris",
+            author: "Stanisław Lem",
+            year: "1961",
+            description: "Ta filozoficzna powieść science fiction bada ludzki kontakt z prawdziwie obcą inteligencją - myślącym oceanem na planecie Solaris. Gdy ocean zaczyna materializować fizyczne wcielenia najbardziej bolesnych wspomnień załogi, psycholog Kris Kelvin musi zmierzyć się z winą po samobójstwie żony.",
+            significance: "Jedno z najbardziej cenionych dzieł science fiction, zgłębiające głębokie pytania o świadomość, pamięć i granice ludzkiego zrozumienia. Zostało przetłumaczone na ponad 40 języków i wielokrotnie adaptowane na film."
+        },
+        {
+            title: "Początek",
+            author: "Andrzej Szczypiorski",
+            year: "1986",
+            description: "Osadzona w okupowanej przez nazistów Warszawie w 1943 roku, ta powieść śledzi Irmę Seidenman, żydowską wdowę podającą się za Aryjkę, oraz różnorodną obsadę Polaków, którzy pomagają jej przetrwać. Poprzez powiązane historie, Szczypiorski bada wybory moralne podczas Holokaustu, zgłębiając tematy odwagi, zdrady i ludzkiej godności.",
+            significance: "Międzynarodowy bestseller oferujący zniuansowany portret stosunków polsko-żydowskich podczas II wojny światowej, pokazujący zarówno heroizm, jak i moralną złożoność. Stała się jedną z najczęściej tłumaczonych polskich powieści końca XX wieku."
+        },
+        {
+            title: "Rękopis znaleziony w Saragossie",
+            author: "Jan Potocki",
+            year: "1815",
+            description: "Ta zawita narracja ramowa śledzi Alfonsa van Wordena, kapitana gwardii walońskiej, przez tajemnicze przygody w górach Sierra Morena w Hiszpanii. Powieść przeplata opowieści w opowieściach, mieszając gotycki horror, awanturę pikarejską, dyskurs filozoficzny i erotyzm w labiryntowej strukturze.",
+            significance: "Arcydzieło europejskiego romantyzmu, które wpłynęło na pisarzy od Jorge Luisa Borgesa po Umberto Eco. Jego złożona struktura narracyjna wyprzedziła literaturę postmodernistyczną o ponad stulecie."
+        },
+        {
+            title: "Wesele",
+            author: "Stanisław Wyspiański",
+            year: "1901",
+            description: "Ten dramat symbolistyczny przedstawia wesele poety z Krakowa z chłopką, na którym obecni są zarówno inteligencja, jak i wieśniacy. Gdy uroczystość trwa, postacie spotykają duchy i alegorie, prowadząc do głębokiej medytacji o polskiej tożsamości narodowej i niepowodzeniu w działaniu na rzecz ideałów rewolucyjnych.",
+            significance: "Jeden z najważniejszych polskich dramatów, skrystalizował dyskusje o charakterze narodowym i roli intelektualistów. Zakończenie sztuki - gdzie magiczna okazja do powstania narodowego kończy się snem - stało się potężną metaforą polskiej pasywności."
+        },
+        {
+            title: "Opętani",
+            author: "Witold Gombrowicz",
+            year: "1939",
+            description: "Ta gotycka powieść opowiada historię dwóch młodych mężczyzn, którzy stają się uwikłani w tajemnicze wydarzenia w niszczejącym dworze. Mieszając fikcję detektywistyczną z filozoficznym dociekaniem, narracja bada obsesję, seksualność i nadprzyrodzoność, kwestionując naturę samej rzeczywistości.",
+            significance: "Choć mniej znana niż Ferdydurke, ta praca демонструje unikalną zdolność Gombrowicza do łączenia fikcji gatunkowej z eksperymentami awangardowymi, tworząc niepokojącą atmosferę, która kwestionuje konwencjonalne struktury narracyjne."
+        },
+        {
+            title: "Konrad Wallenrod",
+            author: "Adam Mickiewicz",
+            year: "1828",
+            description: "Ten poemat narracyjny opowiada o Litwinie wychowanym przez Krzyżaków, który zostaje ich Wielkim Mistrzem z tajnym celem zniszczenia ich od wewnątrz. Osadzony podczas średniowiecznych krucjat bałtyckich, bada tematy poświęcenia, zemsty i moralnej dwuznaczności walki z tyranią poprzez oszustwo.",
+            significance: "Podczas zaborów dzieło to stało się kontrowersyjną alegorią polityczną o taktykach oporu przeciwko ciemiężycielom. Wywołało debatę o tym, czy oszustwo i zdrada mogą być usprawiedliwione w służbie wyzwolenia narodowego."
+        },
+        {
+            title: "Romans Teresy Hennert",
+            author: "Zofia Nałkowska",
+            year: "1923",
+            description: "Ta psychologiczna powieść bada życie tytułowej bohaterki, kobiety uwięzionej w konwencjonalnym małżeństwie, która szuka spełnienia przez romans. Nałkowska zgłębia wewnętrzne życie nowoczesnej kobiety, badając konflikt między społecznymi oczekiwaniami a osobistym pragnieniem szczęścia.",
+            significance: "Przełomowe dzieło w polskiej literaturze feministycznej, oferujące wyrafinowaną analizę psychologiczną kobiecego doświadczenia i krytykę ograniczeń narzucanych przez społeczeństwo patriarchalne."
+        },
+        {
+            title: "Pamiętnik znaleziony w wannie",
+            author: "Stanisław Lem",
+            year: "1961",
+            description: "W odległej przyszłości, gdzie papier został zniszczony przez mikroorganizm, uczeni odkrywają pamiętnik z ery 'Papiralysis'. Protagonista wędruje przez ogromny podziemny kompleks wojskowy, otrzymując sprzeczne rozkazy w biurokratycznym koszmarze, który satyryzuje paranoję zimnej wojny i absurd instytucjonalny.",
+            significance: "Genialną kafkowską satyrą biurokracji i systemów totalitarnych, демонструющą geniusz Lema w łączeniu filozoficznej głębi z mroczno-komicznymi scenariuszami science fiction."
+        },
+        {
+            title: "Sklepy cynamonowe",
+            author: "Bruno Schulz",
+            year: "1934",
+            description: "Ten zbiór powiązanych opowiadań odtwarza dzieciństwo narratora w prowincjonalnym miasteczku Drohobycz poprzez oniryczną, surrealistyczną prozę. Opowiadania koncentrują się na ojcu narratora, sklepikarzu, którego dziwaczne metamorfozy i obsesje przekształcają prozaiczną rzeczywistość w magiczną mitologię.",
+            significance: "Unikalny styl Schulza - łączący mitologiczną wyobraźnię z precyzyjną obserwacją - stworzył jeden z najbardziej oryginalnych głosów w literaturze europejskiej. Jego twórczość wpłynęła na realizm magiczny i była chwalona przez pisarzy od Cynthii Ozick po Roberto Bolaño."
+        },
+        {
+            title: "Sanatorium pod Klepsydrą",
+            author: "Bruno Schulz",
+            year: "1937",
+            description: "Drugi zbiór opowiadań Schulza kontynuuje jego mitologizację dzieciństwa i prowincjonalnego żydowskiego życia w Drohobyczu. Tytułowe opowiadanie przedstawia narratora odwiedzającego ojca w sanatorium, gdzie czas płynie inaczej, tworząc haunting medytację o pamięci, śmierci i płynności rzeczywistości.",
+            significance: "To ostatnie dzieło przed zamordowaniem Schulza przez nazistów w 1942 roku reprezentuje kulminację jego artystycznej wizji. Zagubiona powieść 'Mesjasz', którą niósł gdy został zabity, pozostaje jedną z wielkich tajemnic literatury."
+        },
+        {
+            title: "Kariera Nikodema Dyzmy",
+            author: "Tadeusz Dołęga-Mostowicz",
+            year: "1932",
+            description: "Ta satyryczna powieść śledzi bezrobotnego urzędnika, który poprzez serię przypadków i nieporozumień wznosi się na pozycję potężnego ministra rządu w międzywojennej Polsce. Jego sukces pomimo całkowitej niekompetencji odsłania korupcję i powierzchowność elity politycznej i społecznej.",
+            significance: "Cięta satyra społeczeństwa II Rzeczypospolitej, która pozostaje aktualna jako komentarz o tym, jak pusta ambicja i koneksje społeczne mogą przeważyć nad kompetencjami. Powieść była wielokrotnie adaptowana na scenę i ekran."
+        },
+        {
+            title: "Ziemia obiecana",
+            author: "Władysław Reymont",
+            year: "1899",
+            description: "Osadzona w szybko industrializującym się mieście Łódź, ta powieść śledzi trzech przyjaciół - Polaka, Niemca i Żyda - gdy próbują zrobić fortunę w przemyśle tekstylnym. Reymont przedstawia brutalny kapitalizm końca XIX wieku, pokazując, jak pogoń za bogactwem niszczy ludzkie relacje i wartości.",
+            significance: "Potężna krytyka kapitalizmu przemysłowego i miejskiej alienacji, to dzieło uchwytuje ciemną stronę modernizacji i pozostaje najbardziej społecznie świadomą powieścią Reymonta, później zaadaptowaną przez Andrzeja Wajdę na ceniony film."
+        },
+        {
+            title: "Pamiętnik z powstania warszawskiego",
+            author: "Miron Białoszewski",
+            year: "1970",
+            description: "Te unikalne wspomnienia opowiadają o doświadczeniach Białoszewskiego podczas powstania warszawskiego w 1944 roku z perspektywy cywila. Napisane w niekonwencjonalnym, fragmentarycznym stylu, uchwytują chaos, terror i absurd przetrwania podczas 63-dniowej bitwy, koncentrując się na doświadczeniach zwykłych ludzi zamiast bohaterów wojskowych.",
+            significance: "Przełomowe odejście od tradycyjnych narracji wojennych, wykorzystujące innowacyjny język i strukturę do przekazania traumatycznego doświadczenia. Zakwestionowało heroiczne mity o powstaniu i wpłynęło na sposób, w jaki Polacy pamiętają to kluczowe wydarzenie."
+        },
+        {
+            title: "Pornografia",
+            author: "Witold Gombrowicz",
+            year: "1960",
+            description: "Dwóch mężczyzn w średnim wieku odwiedza dwór podczas okupacji nazistowskiej i stają się obsesyjnie zajęci manipulowaniem dwójką nastolatków w romans miłosny. Powieść bada tematy młodości kontra wiek, pożądania i perwersyjnej przyjemności kontroli, wszystko na tle moralnego chaosu wojennej Polski.",
+            significance: "Jedno z najbardziej kontrowersyjnych dzieł Gombrowicza, bada korupcję niewinności i destrukcyjną moc obsesji. Psychologiczna złożoność i moralna dwuznaczność powieści czynią ją wymagającą eksploracją ludzkiej natury."
+        },
+        {
+            title: "Trans-Atlantyk",
+            author: "Witold Gombrowicz",
+            year: "1953",
+            description: "Napisana w pastiszu XVII-wiecznej polszczyzny, ta autobiograficzna powieść śledzi przypadkowe wygnanie Gombrowicza w Argentynie w momencie wybuchu II wojny światowej. Satyryzuje polską kulturę emigracyjną, mitologię nacjonalistyczną i tradycyjne koncepcje honoru i męskości poprzez absurdalny i często groteskowy humor.",
+            significance: "Radykalna dekonstrukcja polskiej tożsamości narodowej i mentalności emigracyjnej, to dzieło zaszokowało konserwatywnych czytelników, ale stało się centralne dla zrozumienia krytyki Gombrowicza polskiej kultury i jego filozofii indywidualnego wyzwolenia od form społecznych."
+        },
+        {
+            title: "Bramy raju",
+            author: "Jerzy Andrzejewski",
+            year: "1960",
+            description: "Ta eksperymentalna powieść składa się z jednego 40 000-słownego zdania opisującego krucjatę dziecięcą z 1212 roku. Śledząc młodego Jacques'a de Cloyes i jego zwolenników w ich skazanej na niepowodzenie podróży do Ziemi Świętej, bada tematy wiary, manipulacji, niewinności i tragedii błędnego idealizmu.",
+            significance: "Majstersztyk techniki literackiej, styl strumienia świadomości powieści tworzy hipnotyczny efekt odzwierciedlający gorączkowy sen krucjaty dzieci. Służy jako potężna alegoria o ideologicznej manipulacji i wykorzystaniu niewinności."
+        },
+        {
+            title: "Popiół i diament",
+            author: "Jerzy Andrzejewski",
+            year: "1948",
+            description: "Osadzona w ostatnich dniach II wojny światowej i na początku rządów komunistycznych, ta powieść śledzi Maćka Chełmickiego, młodego żołnierza Armii Krajowej, któremu rozkazano zamordować komunistycznego urzędnika. Poprzez kryzys moralny Maćka, Andrzejewski bada złożoność politycznej transformacji Polski i osobistej odpowiedzialności.",
+            significance: "Powieść stała się jeszcze bardziej znana dzięki filmowej adaptacji Andrzeja Wajdy z 1958 roku. Uchwytywała tragedię młodych Polaków złapanych między lojalnością wobec antykomunistycznego oporu a rzeczywistością nowego porządku politycznego Polski."
+        },
+        {
+            title: "Brzezina",
+            author: "Jarosław Iwaszkiewicz",
+            year: "1932",
+            description: "Ta nowela bada trójkąt miłosny między trzema młodymi ludźmi spędzającymi lato na wsi. Celebrowana za liryczną prozę i psychologiczną głębię, bada przebudzenie pożądania, zazdrości i bolesne przejście od niewinności do doświadczenia na tle polskiego krajobrazu.",
+            significance: "Jeden z najlepszych przykładów polskiej prozy poetyckiej, dzieło демонструет mistrzostwo Iwaszkiewicza w lirycznym opisie i subtelnej obserwacji psychologicznej. Pozostaje podstawą polskiej edukacji literackiej."
+        },
+        {
+            title: "Panny z Wilka",
+            author: "Jarosław Iwaszkiewicz",
+            year: "1933",
+            description: "Mężczyzna w średnim wieku powraca, by odwiedzić pięć sióstr, które znał piętnaście lat wcześniej, odkrywając, że czas i okoliczności przekształciły ich młodzieńcze marzenia w rozczarowanie. Ta melancholijna nowela medytuje nad utraconą młodością, upływem czasu i przepaścią między pamięcią a rzeczywistością.",
+            significance: "Później zaadaptowana przez Andrzeja Wajdę na ceniony film, ta praca exemplifikuje zdolność Iwaszkiewicza do uchwycenia elegijnego nastroju utraconych możliwości i gorzko-słodkiej nostalgii."
+        },
+        {
+            title: "Kamień na kamieniu",
+            author: "Wiesław Myśliwski",
+            year: "1984",
+            description: "Ta rozległa powieść składa się ze wspomnień Szymka Pietruszki, starszego chłopa, który reflektuje nad swoim życiem w polskiej wsi przez większość XX wieku. Poprzez jego wspomnienia o pracy, miłości, wojnie i stracie, Myśliwski tworzy epickie przedstawienie wiejskiego życia polskiego i nieubłaganego upływu czasu.",
+            significance: "Uważana za jedną z największych polskich powieści końca XX wieku, łączy epicką rozpiętość chłopskich powieści Reymonta z modernistycznymi technikami narracyjnymi, tworząc głęboką medytację o pamięci, tożsamości i śmiertelności."
+        },
+        {
+            title: "Traktat o łuskaniu fasoli",
+            author: "Wiesław Myśliwski",
+            year: "2006",
+            description: "Nienazywan profesor literatury zostaje namówiony do opowiedzenia historii swojego życia podczas łuskania fasoli. Jego monolog przeplata wspomnienia z dzieciństwa, wojny, życia uniwersyteckiego i kariery akademickiej, tworząc palimpsest polskiej historii XX wieku przez podróż jednego intelektualisty.",
+            significance: "Zdobywca Nagrody Literackiej Nike, ta powieść демонструет dojrzały styl Myśliwskiego, łączący filozoficzną głębię z żywym opowiadaniem. Prosty akt łuskania fasoli staje się medytacją o czasie, pamięci i historiach, które sobie opowiadamy."
+        },
+        {
+            title: "Pałac",
+            author: "Wiesław Myśliwski",
+            year: "1970",
+            description: "Osadzona w niszczejącym dworze symbolizującym szlachecką przeszłość Polski, ta powieść śledzi Wiktora, młodego człowieka, który podejmuje pracę utrzymywania opuszczonego pałacu. Budynek staje się postacią samą w sobie, wypełnioną duchami przeszłości, gdy Wiktor walczy o zachowanie historii przeciwko nieuniknionemu rozpadowi.",
+            significance: "Debiutancka powieść Myśliwskiego ustanowiła jego reputację jako głównego głosu literackiego, badając tematy dziedzictwa kulturowego, zmian społecznych i napięcia między zachowaniem a postępem w powojennej Polsce."
+        },
+        {
+            title: "Noc, dzień i noc",
+            author: "Andrzej Szczypiorski",
+            year: "1991",
+            description: "Osadzona w latach 50., ta powieść przedstawia życie pod stalinizmem poprzez relację między oficerem tajnej policji a kobietą, którą kocha, ale również inwigiluje. Poprzez ich złożoną dynamikę, Szczypiorski bada moralną korupcję totalitaryzmu i to, jak ideologia niszczy osobiste relacje.",
+            significance: "Potężna eksploracja życia pod komunizmem, która unika uproszczonych portretów, pokazując, jak zwykli ludzie stawali się współwinni opresji. Powieść przyczynia się do ciągłego rozliczania się polskiej literatury z okresem komunistycznym."
+        },
+        {
+            title: "Trędowata",
+            author: "Helena Mniszkówna",
+            year: "1909",
+            description: "Ta romantyczna powieść opowiada historię Stefanii Rudeckiej, która nosi stygmat bycia nieślubną córką Żydówki. Pomimo swojego piękna i cnoty, jest traktowana jako wyrzutek społeczny, dopóki arystokrata się w niej nie zakocha, prowadząc do medytacji o uprzedzeniach, honorze i odkupieniu.",
+            significance: "Jedna z najpopularniejszych polskich powieści początku XX wieku, była wielokrotnie adaptowana na scenę, film i telewizję. Dzieło poruszało kwestie antysemityzmu i uprzedzeń społecznych w polskim społeczeństwie."
+        },
+        {
+            title: "Krzyżacy",
+            author: "Henryk Sienkiewicz",
+            year: "1900",
+            description: "Ta epicka powieść historyczna przedstawia konflikt między Polską a Zakonem Krzyżackim w XV wieku, kulminujący w bitwie pod Grunwaldem w 1410 roku. Poprzez losy szlachcica Zbyszka z Bogdańca i jego ukochanej Danusi, Sienkiewicz tworzy monumentalną opowieść o honorze, miłości i polskim patriotyzmie.",
+            significance: "Jedno z najważniejszych dzieł Sienkiewicza, używające historii do wzmocnienia polskiej tożsamości narodowej podczas zaborów. Powieść przedstawia Polaków jako bohaterskich obrońców przeciwko germańskiej agresji, temat rezonujący w historii Polski."
+        },
+        {
+            title: "Astronauci",
+            author: "Stanisław Lem",
+            year: "1951",
+            description: "Debiutancka powieść Lema przedstawia międzynarodową załogę w podróży na Wenus, gdzie odkrywają pozostałości cywilizacji, która zniszczyła się w wojnie atomowej. To wczesne dzieło pokazuje, jak Lem zaczyna rozwijać swoje tematy o niebezpieczeństwach technologii i możliwości obcej inteligencji.",
+            significance: "Choć uważana za juvenilium w porównaniu z dojrzałymi dziełami Lema, ustanowiła wiele tematów, które będzie badał przez całą karierę i продемонстровала jego zobowiązanie do naukowo wiarygodnej science fiction."
+        },
+        {
+            title: "Niezwyciężony",
+            author: "Stanisław Lem",
+            year: "1964",
+            description: "Załoga krążownika kosmicznego poszukuje zaginionego statku na planecie Regis III, odkrywając dziwną formę niebiologicznego 'życia' - mikroskopijne maszyny, które ewoluowały przez dobór naturalny. Powieść bada granice ludzkiego zrozumienia przy konfrontacji z prawdziwie obcymi formami istnienia.",
+            significance: "Jedno z najbardziej filozoficznych dzieł science fiction Lema, przedstawia wizję ewolucji poza życiem biologicznym i kwestionuje zdolność ludzkości do pojęcia inteligencji fundamentalnie różnej od naszej własnej."
+        },
+        {
+            title: "Fiasko",
+            author: "Stanisław Lem",
+            year: "1987",
+            description: "Ostatnia powieść Lema przedstawia próbę ludzkości nawiązania kontaktu z obcą cywilizacją, która okazuje się wroga lub niezrozumiała. Misja kończy się katastrofalnym fiaskiem, oferując pesymistyczny obraz możliwości znaczącej komunikacji między cywilizacjami i granic ludzkiej wiedzy.",
+            significance: "Podsumowanie sceptycyzmu Lema zarówno wobec natury ludzkiej, jak i możliwości kontaktu z obcą inteligencją, to dzieło reprezentuje jego dojrzałą filozoficzną perspektywę na komunikację, wiedzę i fundamentalną niepoznawalność wszechświata."
+        },
+        {
+            title: "Cyberiada",
+            author: "Stanisław Lem",
+            year: "1965",
+            description: "Ten zbiór humorystycznych opowiadań śledzi dwóch 'konstruktorów', Trurla i Klapaucjusza, którzy budują coraz bardziej absurdalne maszyny i królestwa w uniwersum zamieszkałym wyłącznie przez roboty. Używając zabawowego języka i matematycznych paradoksów, Lem tworzy filozoficzne bajki o tworzeniu, władzy i granicach logiki.",
+            significance: "Jedno z najbardziej ukochanych dzieł Lema, łączące wyrafinowaną grę słów (szczególnie trudną do przetłumaczenia), koncepcje naukowe i filozoficzną głębię w zabawnych opowieściach, które przemawiają zarówno do ogólnych czytelników, jak i intelektualistów."
+        },
+        {
+            title: "Opowieści o pilocie Pirxie",
+            author: "Stanisław Lem",
+            year: "1968",
+            description: "Te opowiadania śledzą karierę Pirxa, przeciętnego, ale szczęśliwego pilota statków kosmicznych, od jego studenckich dni po pracę jako pilot testowy dla eksperymentalnych systemów. Poprzez bardzo ludzkie błędy i przetrwanie Pirxa, Lem bada relację między ludźmi a coraz bardziej wyrafinowaną technologią.",
+            significance: "Przeciętność protagonisty była rewolucyjna w science fiction, oferując przeciwwagę dla heroicznych narracji o astronautach. Człowieczeństwo Pirxa w obliczu doskonałych maszyn bada, co czyni nas ludźmi."
+        },
+        {
+            title: "Powrót z gwiazd",
+            author: "Stanisław Lem",
+            year: "1961",
+            description: "Astronauta wraca na Ziemię po 10-letniej misji (127 lat z powodu dylatacji czasu), by znaleźć społeczeństwo przekształcone w bezpieczną utopię wolną od przemocy, gdzie wszelkie ryzyko zostało wyeliminowane. Zmagając się z adaptacją do tej 'betryzacji', boryka się z pytaniem, czy ludzkość straciła coś istotnego.",
+            significance: "Przenikliwe badanie postępu, kultury bezpieczeństwa i tego, co stanowi znaczące ludzkie istnienie. Lem kwestionuje, czy społeczeństwo wolne od ryzyka jest pożądane i bada alienację tych, którzy nie pasują do zaprojektowanej harmonii społecznej."
+        },
+        {
+            title: "Głos Pana",
+            author: "Stanisław Lem",
+            year: "1968",
+            description: "Matematyk dołącza do tajnego projektu mającego rozszyfrować to, co może być wiadomością z kosmosu. Powieść przybiera formę jego wspomnień o porażce projektu, badając, jak naukowe, polityczne i osobiste uprzedzenia uniemożliwiają zrozumienie, i kwestionując, czy 'wiadomość' w ogóle jest wiadomością.",
+            significance: "Być może najbardziej filozoficznie rygorystyczna powieść Lema, to głęboka medytacja o granicach ludzkiej wiedzy, naturze komunikacji i niemożności obiektywnego dociekania naukowego. Wielu uważa ją za jego arcydzieło."
+        },
+        {
+            title: "Eden",
+            author: "Stanisław Lem",
+            year: "1959",
+            description: "Po awaryjnym lądowaniu na planecie Eden, załoga odkrywa cywilizację w kryzysie. Gdy próbują zrozumieć strukturę i konflikty obcego społeczeństwa, ich ludzkie perspektywy i założenia wielokrotnie prowadzą ich na manowce, podnosząc pytania o możliwość prawdziwego zrozumienia fundamentalnie różnej kultury.",
+            significance: "Ważne dzieło w eksploracji Lema problemu kontaktu - jak (lub czy) ludzkość może pojąć obcą inteligencję. Krytykuje antropomorficzne myślenie i демонструет niebezpieczeństwa narzucania naszych ram na prawdziwie inne."
+        },
+        {
+            title: "Kordian",
+            author: "Juliusz Słowacki",
+            year: "1834",
+            description: "Ten romantyczny dramat śledzi młodego polskiego patriotę, który planuje zamordować rosyjskiego cara, ale zawodzi w kluczowym momencie. Poprzez psychologiczną podróż Kordiana od idealizmu do rozpaczy, Słowacki tworzy złożoną medytację o indywidualnym działaniu, obowiązku narodowym i psychologii rewolucyjnej porażki.",
+            significance: "Jeden z wielkich polskich dramatów romantycznych, oferuje psychologiczną alternatywę dla bardziej epickiego podejścia Mickiewicza. Wewnętrzna walka Kordiana stała się emblematyczna dla dylematu polskiej inteligencji pod obcą okupacją."
+        },
+        {
+            title: "Balladyna",
+            author: "Juliusz Słowacki",
+            year: "1839",
+            description: "Ten dramat wierszowany opowiada mroczną bajkę o dwóch siostrach, Balladynie i Alinie, rywalizujących o miłość księcia. Ambicja Balladyny prowadzi ją do morderstwa i tyranii w tragedii, która łączy słowiański folklor z elementami szekspirowskimi, tworząc parabolę o korumpującym wpływie władzy.",
+            significance: "Najczęściej wystawiana sztuka Słowackiego, демонструет jego geniusz w łączeniu elementów ludowych z wysokim dramatem. Dzieło głęboko zakorzeniło się w polskiej kulturze, a 'Balladyna' stała się synonimem bezwzględnej ambicji."
+        },
+        {
+            title: "Beniowski",
+            author: "Juliusz Słowacki",
+            year: "1841",
+            description: "Ten niedokończony poemat narracyjny opowiada historię Maurycego Beniowskiego, XVIII-wiecznego polskiego awanturnika. Słowacki nieustannie przerywa swoją narrację dygреsjами, komentarzami i meta-tekstowymi żartami, tworząc rewolucyjne dzieło, które dekonstruuje poezję epicką nawet gdy ją tworzy.",
+            significance: "Jedno z najbardziej innowacyjnych dzieł w polskiej literaturze, wyprzedzające techniki postmodernistyczne o ponad stulecie. Jego zabawna narracyjna samoświadomość i odrzucenie tradycyjnej formy epickiej wpłynęły na późniejszych eksperymentalnych pisarzy."
+        },
+        {
+            title: "Anhelli",
+            author: "Juliusz Słowacki",
+            year: "1838",
+            description: "Ten wizjonerski poemat prozą przedstawia polskich zesłańców na Syberii jako duchową podróż przez cierpienie ku odkupieniu. Używając biblijnego i mistycznego obrazowania, Słowacki przekształca historyczną deportację w apokaliptyczną wizję, gdzie męczeństwo prowadzi do narodowego zmartwychwstania.",
+            significance: "Arcydzieło romantycznego mesjanizmu, ustanowiło motyw Polski jako 'Chrystusa Narodów' cierpiącego za grzechy ludzkości. Wizja narodowa Słowackiego wpłynęła na polską świadomość narodową przez następne stulecia."
+        },
+        {
+            title: "Przedwiośnie",
+            author: "Stefan Żeromski",
+            year: "1925",
+            description: "Ta powieść śledzi Cezarego Barykę, młodego człowieka, który wraca do niepodległej Polski po rewolucji rosyjskiej, tylko po to, by znaleźć kraj pogrążony w biedzie i chaosie. Poprzez jego rozczarowanie i idealistyczne poszukiwania, Żeromski bada przepaść między marzeniami o odrodzonej Polsce a brutalnymi realiami okresu międzywojennego.",
+            significance: "Jedna z najważniejszych polskich powieści XX wieku, uchwytuje rozczarowanie okresu międzywojennego i bada napięcie między ideałami społecznymi a trudnościami w ich realizacji. Zakończenie pozostaje jednym z najbardziej debatowanych w polskiej literaturze."
+        },
+        {
+            title: "Ludzie bezdomni",
+            author: "Stefan Żeromski",
+            year: "1900",
+            description: "Ta społecznie zaangażowana powieść śledzi doktora Judyma, idealistycznego lekarza, który walczy z ubóstwem i chorobą w warszawskich slumsach i wiejskich wioskach. Zmagając się z systemowymi niesprawiedliwościami i osobistymi poświęceniami, staje w obliczu fundamentalnych pytań o społeczną odpowiedzialność i indywidualne szczęście.",
+            significance: "Przełomowe dzieło polskiego naturalizmu i literatury społecznie zaangażowanej, które wpłynęło na pokolenia polskich intelektualistów. Eksploracja Żeromskiego systemowej nędzy i moralnych obowiązków uprzywilejowanych pozostaje aktualna."
+        },
+        {
+            title: "Siłaczka",
+            author: "Stefan Żeromski",
+            year: "1930",
+            description: "Ta kontrowersyjna powieść opowiada historię pani Bukownickiej, kobiety zamężnej, która angażuje się w romans z młodszym mężczyzną i ostatecznie zabija swojego męża. Żeromski bada kobiece pragnienie, społeczne ograniczenia i psych psychologiczne napięcia między konwencją a osobistym spełnieniem.",
+            significance: "Śmiała i kontrowersyjna w swoim czasie, powieść ta продемонстровała gotowość Żeromskiego do badania trudnych tematów dotyczących kobiecej seksualności i małżeńskiej nieszczęśliwości, kwestionując społeczne normy."
+        },
+        {
+            title: "Pokolenie",
+            author: "Stanisław Dygat",
+            year: "1948",
+            description: "Ta nowela przedstawia doświadczenia młodych Polaków podczas okupacji niemieckiej, koncentrując się na ich moralnych wyborach, strachach i aktach oporu. Dygat tworzy portret generacji ukształtowanej przez wojnę, badając, jak ekstremalne okoliczności ujawniają prawdziwy charakter.",
+            significance: "Ważny głos w powojennej literaturze polskiej, przedstawiający wojenne doświadczenia młodych ludzi z psychologiczną głębią i moralną złożonością. Dzieło przyczyniło się do wykształcenia się nowej perspektywy na okupację."
+        },
+        {
+            title: "Mała apokalipsa",
+            author: "Tadeusz Konwicki",
+            year: "1979",
+            description: "W tej satyrycznej dystopii, starzejący się pisarz w komunistycznej Warszawie zostaje poproszony przez podziemną opozycję o publiczne podpalenie się w proteście politycznym. Powieść śledzi jego ostatni dzień, gdy błąka się po mieście, tworząc surrealistyczną wizję życia pod późnym komunizmem.",
+            significance: "Potężna alegoria o moralnym kompromisie i absurdalności życia pod komunizmem, ta powieść krążyła w podziemnym obiegu i stała się tekstem kultowym. Konwicki mistrz mieszania realizmu z surrealistycznymi elementami."
+        },
+        {
+            title: "Syzyfowe prace",
+            author: "Stefan Żeromski",
+            year: "1898",
+            description: "Ta autobiograficzna powieść przedstawia edukację narratora w rosyjskiej szkole średniej w okupowanej Polsce, gdzie polski język i kultura są tłumione. Poprzez doświadczenia młodego Marcina Borowicza, Żeromski tworzy potężną krytykę rosyjskiej polityki rusyfikacji i jej wpływu na młodych Polaków.",
+            significance: "Jedna z najbardziej poruszających przedstawień edukacji pod zaborami, dzieło to uchwytuje psychologiczny koszt rusyfikacji i opór polskiej młodzieży. Tytuł stał się symbolem bezowocnej pracy w opresyjnych warunkach."
+        },
+        {
+            title: "Zmory",
+            author: "Tadeusz Konwicki",
+            year: "1979",
+            description: "Ta oniryczna powieść miesza wspomnienia, marzenia senne i wizje, gdy narrator reflektuje nad swoim życiem w komunistycznej Polsce. Struktura przypominająca strumień świadomości tworzy surrealistyczny portret życia pod późnym komunizmem, zacierając granice między rzeczywistością a wyobraźnią.",
+            significance: "Jeden z najważniejszych głosów literatury podziemnej, Konwicki używa innowacyjnej formy do uchwycenia duchowego malaise życia pod komunizmem. Jego technika łączenia osobistego z politycznym wpłynęła na kolejne pokolenie pisarzy."
+        },
+        {
+            title: "Zły",
+            author: "Leopold Tyrmand",
+            year: "1955",
+            description: "Ta powieść kryminalna śledzi Roberta Końskiego, przystojnego włamywacza w stalinowskiej Warszawie, który staje się uwikłany w morderstwo. Tyrmand tworzy stylowy thriller noir, który subtelnie krytykuje reżim komunistyczny poprzez przedstawienie podziemia kryminalnego i moralnej dwuznaczności.",
+            significance: "Pierwszy polski powieść noir i bestseller, który odświeżył polską literaturę swoim stylem i zachodnim wpływem. Mimo cenzury, krytyka Tyrmanda systemu komunistycznego przebiła się przez narrację kryminalną."
+        },
+        {
+            title: "Czarne skrzydła",
+            author: "Juliusz Kaden-Bandrowski",
+            year: "1925",
+            description: "Ta ekspresjonistyczna powieść przedstawia górników śląskich w okresie międzywojennym, używając intensywnego, obrazowego języka do przedstawienia brutalnych warunków pracy i klasowych napięć. Kaden-Bandrowski tworzy wizjonerski portret życia przemysłowego i rewolucyjnych aspiracji robotników.",
+            significance: "Ważny przykład polskiego ekspresjonizmu literackiego i literatury proletariackiej. Innowacyjny styl Kaden-Bandrowskiego i społeczne zaangażowanie wpłynęły na międzywojenne eksperymenty literackie."
+        },
+        {
+            title: "Granica",
+            author: "Zofia Nałkowska",
+            year: "1935",
+            description: "Ta psychologiczna powieść bada życie Zenona Ziembiewicza poprzez trzy kobiety, które go kochają. Nałkowska tworzy wyrafinowaną analizę męskiej psychologii i kobiecego doświadczenia w okresie międzywojennym, badając granice między osobami i niemożność prawdziwej komunikacji.",
+            significance: "Jedna z najdojrzalszych prac Nałkowskiej, демонструет jej psychologiczne mistrzostwo i zainteresowanie egzystencjalnymi pytaniami o tożsamość i izolację. Powieść wpłynęła na rozwój polskiej prozy psychologicznej."
+        },
+        {
+            title: "Medaliony",
+            author: "Zofia Nałkowska",
+            year: "1946",
+            description: "Ten zbiór opowiadań przedstawia świadectwa z nazistowskich obozów koncentracyjnych i okupacji, napisane w powściągliwym, dokumentalnym stylu. Nałkowska pozwala świadkom mówić swoimi własnymi głosami, tworząc potężne świadectwo Holokaustu i niemieckich zbrodni w Polsce.",
+            significance: "Jedna z najwcześniejszych i najważniejszych literackich reakcji na Holocaust, powściągliwy styl Nałkowskiej paradoksalnie wzmacnia horror. Dzieło ustanowiło model literatury świadectwa w Polsce powojennej."
+        }
     ];
 
-    // Usuwamy “puste”/żartobliwe wstawki, jeśli zostawiłeś je jako placeholdery:
-    const CLEAN = CLASSICS.filter(x => x.t && x.a && x.d);
+    const monthNames = [
+        "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
+        "lipca", "sierpnia", "września", "października", "listopada", "grudnia"
+    ];
 
-    const elToday = document.getElementById("today");
-    const elDayIndex = document.getElementById("dayIndex");
-    const elItemIndex = document.getElementById("itemIndex");
-    const elTitle = document.getElementById("workTitle");
-    const elAuthor = document.getElementById("workAuthor");
-    const elDesc = document.getElementById("workDesc");
+    const startDate = new Date('2025-01-01');
+    let currentIndex = 0;
 
-    const toISODate = (d) => d.toISOString().slice(0,10);
-
-    function daysBetween(startISO, endDate) {
-      const start = new Date(startISO + "T00:00:00");
-      const end = new Date(toISODate(endDate) + "T00:00:00");
-      const ms = end - start;
-      return Math.floor(ms / 86400000);
+    function getDaysSinceStart() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0);
+        const diffTime = today - start;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        return Math.max(0, diffDays);
     }
 
-    let manualIndex = null;
-
-    function renderByIndex(idx, dayCount) {
-      const n = CLEAN.length;
-      const safe = ((idx % n) + n) % n;
-      const item = CLEAN[safe];
-
-      elToday.textContent = toISODate(new Date());
-      elDayIndex.textContent = String(dayCount);
-      elItemIndex.textContent = `${safe + 1}/${n}`;
-
-      elTitle.textContent = item.t;
-      elAuthor.textContent = `${item.a}${item.y ? " • " + item.y : ""}`;
-      elDesc.textContent = item.d;
+    function formatDate(date) {
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
     }
 
-    function renderToday() {
-      const today = new Date();
-      const dayCount = daysBetween(START_DATE, today);
-      const idx = (manualIndex !== null) ? manualIndex : (dayCount % CLEAN.length);
-      renderByIndex(idx, dayCount);
+    function displayClassic(index) {
+        if (index < 0 || index >= classics.length) return;
+        
+        const classic = classics[index];
+        const currentDate = new Date(startDate);
+        currentDate.setDate(currentDate.getDate() + index);
+
+        document.getElementById('currentDate').textContent = formatDate(currentDate);
+        document.getElementById('dayNumber').textContent = `Dzień ${index + 1} z ${classics.length}`;
+        document.getElementById('bookTitle').textContent = classic.title;
+        document.getElementById('author').textContent = classic.author;
+        document.getElementById('year').textContent = classic.year;
+        document.getElementById('description').textContent = classic.description;
+        document.getElementById('significance').textContent = classic.significance;
+
+        // Update button states
+        document.getElementById('prevBtn').disabled = index === 0;
+        document.getElementById('nextBtn').disabled = index >= classics.length - 1;
+        
+        currentIndex = index;
     }
 
-    document.getElementById("btnRandom").addEventListener("click", () => {
-      manualIndex = Math.floor(Math.random() * CLEAN.length);
-      renderToday();
-    });
+    function changeDay(direction) {
+        const newIndex = currentIndex + direction;
+        if (newIndex >= 0 && newIndex < classics.length) {
+            displayClassic(newIndex);
+        }
+    }
 
-    document.getElementById("btnPrev").addEventListener("click", () => {
-      const today = new Date();
-      const dayCount = daysBetween(START_DATE, today);
-      const base = (manualIndex !== null) ? manualIndex : (dayCount % CLEAN.length);
-      manualIndex = base - 1;
-      renderToday();
-    });
+    function goToToday() {
+        const daysSinceStart = getDaysSinceStart();
+        const todayIndex = Math.min(daysSinceStart, classics.length - 1);
+        displayClassic(todayIndex);
+    }
 
-    document.getElementById("btnNext").addEventListener("click", () => {
-      const today = new Date();
-      const dayCount = daysBetween(START_DATE, today);
-      const base = (manualIndex !== null) ? manualIndex : (dayCount % CLEAN.length);
-      manualIndex = base + 1;
-      renderToday();
-    });
+    // Initialize with today's classic
+    window.onload = function() {
+        goToToday();
+    };
+</script>
+```
 
-    renderToday();
-  </script>
 </body>
 </html>
