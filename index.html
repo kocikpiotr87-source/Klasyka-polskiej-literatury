@@ -609,7 +609,7 @@
         "lipca", "sierpnia", "września", "października", "listopada", "grudnia"
     ];
 
-    const startDate = new Date('2025-01-01');
+    const startDate = new Date('2026-01-01');
     let currentIndex = 0;
 
     function getDaysSinceStart() {
@@ -664,9 +664,9 @@
         displayClassic(todayIndex);
     }
 
-    // Initialize with first classic
+    // Initialize with today's classic
     window.onload = function() {
-        displayClassic(0);
+        goToToday();
     };
 </script>
 ```
