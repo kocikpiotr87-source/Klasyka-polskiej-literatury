@@ -163,6 +163,24 @@
         box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
     }
     
+    .action-button {
+        flex: 1;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 0.95em;
+        font-weight: bold;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
     .footer {
         text-align: center;
         padding: 20px;
@@ -213,6 +231,11 @@
         <button class="nav-button" id="prevBtn" onclick="changeDay(-1)">← Poprzednie</button>
         <button class="nav-button" id="todayBtn" onclick="goToToday()">Dzisiaj</button>
         <button class="nav-button" id="nextBtn" onclick="changeDay(1)">Następne →</button>
+    </div>
+    
+    <div style="padding: 0 40px 10px 40px; display: flex; gap: 10px;">
+        <button class="action-button" onclick="scrambleBooks()">🔀 Losuj kolejność</button>
+        <button class="action-button" onclick="sortAlphabetically()">🔤 Sortuj alfabetycznie</button>
     </div>
     
     <div style="padding: 0 40px 20px 40px;">
@@ -1002,6 +1025,1287 @@
             year: "1830",
             description: "Wiersz wzywający polskie matki do wychowywania synów gotowych do poświęcenia życia za ojczyznę. Mickiewicz celebruje spartański ideał matki-patriotki.",
             significance: "Kontrowersyjny wiersz, który ukształtował polski kult martyrologii. Krytykowany współcześnie za gloryfikację poświęcenia młodych istnień."
+        },
+        {
+            title: "Kosmos",
+            author: "Witold Gombrowicz",
+            year: "1965",
+            description: "Ostatnia powieść Gombrowicza to detektywistyczna historia o dwóch mężczyznach próbujących rozwiązać tajemnicę powieszonego wróbla. Obsesyjne poszukiwanie sensu prowadzi do absurdalnych wniosków i filozoficznych rozważań o naturze rzeczywistości.",
+            significance: "Najdojrzalsza powieść Gombrowicza, syntetyzująca jego filozofię. Nominowana do Międzynarodowej Nagrody Literackiej, uznawana za jedno z wielkich dzieł XX-wiecznej literatury światowej."
+        },
+        {
+            title: "Sklepy cynamonowe - Traktat o manekinach",
+            author: "Bruno Schulz",
+            year: "1934",
+            description: "Opowiadanie z cyklu 'Sklepy cynamonowe', w którym ojciec narratora wygłasza filozoficzny wykład o stwarzaniu i manekinach. Schulz tworzy metaforę artystycznej kreacji i boskiej twórczości.",
+            significance: "Kluczowe opowiadanie dla zrozumienia poetyki Schulza. Traktat o manekinach stał się manifestem artystycznym i filozoficznym, wpływającym na postmodernistyczną literaturę."
+        },
+        {
+            title: "Wiersze",
+            author: "Tadeusz Różewicz",
+            year: "1974",
+            description: "Zbiór poezji Różewicza, który radykalnie zerwał z tradycją poetycką, tworząc nową estetykę po Auschwitz. Wiersze są świadomie 'niepoetyckie', używając języka codziennego do wyrażenia traumy wojennej.",
+            significance: "Różewicz rewolucjonizował polską poezję powojenną, tworząc nowy język adekwatny do doświadczenia Holokaustu i totalitaryzmu. Wpłynął na całe pokolenie poetów."
+        },
+        {
+            title: "Kartoteka",
+            author: "Tadeusz Różewicz",
+            year: "1960",
+            description: "Dramat antypozytywistyczny pokazujący życie bohatera w niech ronologicznym porządku. Różewicz dekonstruuje tradycyjną formę dramatyczną, tworząc teatr absurdu i egzystencjalnego niepokoju.",
+            significance: "Przełomowy dramat, który wprowadził polską scenę w erę teatru absurdu. Różewicz stworzył nową formę dramatyczną adekwatną do powojennego kryzysu wartości."
+        },
+        {
+            title: "Poezje zebrane",
+            author: "Bolesław Leśmian",
+            year: "1936",
+            description: "Zbiór poezji Leśmiana, jednego z najoryginalniejszych polskich poetów. Jego wiersze łączą ludową wyobraźnię z filozoficzną refleksją, tworząc unikalny język pełen neologizmów i muzycznych rytmów.",
+            significance: "Leśmian stworzył najbardziej oryginalną polską poezję XX wieku. Jego eksperymenty językowe i metafizyczna wyobraźnia wpłynęły na kolejne pokolenia poetów."
+        },
+        {
+            title: "Łąka",
+            author: "Bolesław Leśmian",
+            year: "1920",
+            description: "Poemat przedstawiający metafizyczną wizję łąki jako miejsca między bytem a niebytem. Leśmian używa bujnego języka do opisania tajemnicy istnienia i nieistnienia.",
+            significance: "Jeden z najważniejszych poematów Leśmiana, demonstrujący jego unikalną zdolność do wyrażania metafizycznych intuicji poprzez zmysłowe obrazy i innowacyjny język."
+        },
+        {
+            title: "Dziewczyna",
+            author: "Bolesław Leśmian",
+            year: "1920",
+            description: "Ballada o dziewczynie, która umiera i wraca jako duch. Leśmian eksploruje granicę między życiem a śmiercią, rzeczywistością a snem w charakterystycznym dla siebie lirycznym i fantastycznym stylu.",
+            significance: "Przykład baśniowej poezji Leśmiana, łączącej folklor z modernistyczną wrażliwością. Wiersz pokazuje jego fascynację granicami bytu."
+        },
+        {
+            title: "W malinowym chruśniaku",
+            author: "Bolesław Leśmian",
+            year: "1913",
+            description: "Jeden z najbardziej znanych wierszy Leśmiana, opowiadający o dziewczynie zatańczonej na śmierć przez topielca. Baśniowy nastrój miesza się z erotyzmem i grozą.",
+            significance: "Arcydzieło polskiej ballady modernistycznej. Muzyczność wiersza i jego baśniowa atmosfera uczyniły go jednym z najbardziej rozpoznawalnych utworów Leśmiana."
+        },
+        {
+            title: "Skrzypek Opętany",
+            author: "Bolesław Leśmian",
+            year: "1935",
+            description: "Poemat o skrzypku, który gra dla duchów i istot z pogranicza światów. Leśmian tworzy wizję artysty jako medium między rzeczywistością a transcendencją.",
+            significance: "Najdłuższy i najbardziej ambitny poemat Leśmian, będący summą jego poetyki. Skrzypek staje się metaforą poety i jego misji twórczej."
+        },
+        {
+            title: "Kroniki",
+            author: "Stanisław Lem",
+            year: "1957",
+            description: "Cykl opowiadań science fiction o Ijonie Tichym, podróżniku kosmicznym, który spotyka absurdalne cywilizacje i sytuacje. Lem używa science fiction do satyry społecznej i filozoficznych paradoksów.",
+            significance: "Jeden z najbardziej zabawnych cykli Lema, łączący science fiction z satyrą polityczną i społeczną. Ijon Tichy stał się kultową postacią polskiej SF."
+        },
+        {
+            title: "Dzienniki gwiazdowe",
+            author: "Stanisław Lem",
+            year: "1971",
+            description: "Kontynuacja przygód Ijona Tichego, jeszcze bardziej absurdalna i satyrycz na. Lem bawi się paradoksami czasowymi, technologicznymi utopami i dystopiami.",
+            significance: "Demonstracja pełnej dojrzałości humorystycznej science fiction Lema. Dzienniki są zarówno zabawne, jak i głęboko filozoficzne."
+        },
+        {
+            title: "Kongres futurologiczny",
+            author: "Stanisław Lem",
+            year: "1971",
+            description: "Ijon Tichy bierze udział w kongresie futurologów, który kończy się katastrofą. Obudza się w przyszłości kontrolowanej przez narkotyki, gdzie rzeczywistość jest całkowicie iluzoryczna.",
+            significance: "Proroczaśmieszna satyra na społeczeństwo kontrolowane chemicznie i wirtualnie. Wyprzedza Matrix i dystopie o manipulacji percepcją."
+        },
+        {
+            title: "Bajka o komputerze, który z smokiem walczył",
+            author: "Stanisław Lem",
+            year: "1965",
+            description: "Opowiadanie z 'Cyberiady' o komputerze, który tworzy smoka z matematyki i poezji. Walka z smokiem staje się batalią między różnymi rodzajami prawdy i piękna.",
+            significance: "Mistrzowskie połączenie science fiction, filozofii i humoru. Pokazuje zdolność Lema do tworzenia głębokich parabo poprzez zabawne opowieści."
+        },
+        {
+            title: "Głosy Polaków",
+            author: "Maurycy Mochnacki",
+            year: "1830",
+            description: "Eseje polityczne i literackie jednego z głównych teoretyków romantyzmu polskiego. Mochnacki bronił romantyzmu przeciwko klasykom i rozwijał teorię literatury narodowej.",
+            significance: "Fundamentalny tekst dla zrozumienia polskiego romantyzmu. Mochnacki sformułował teorię poezji romantycznej jako wyrazu ducha narodowego."
+        },
+        {
+            title: "Nie",
+            author: "Ryszard Kapuściński",
+            year: "2006",
+            description: "Zbiór szkiców i esejów reportażysty-globtrotera o spotkaniach z Innym - ludźmi z Afryki, Azji, Ameryki Łacińskiej. Kapuściński medytuje nad wielokulturowością i możliwością porozumienia.",
+            significance: "Testament intelektualny wielkiego reportera. Kapuściński podsumowuje swoje doświadczenia i refleksje o naturze ludzkiej i kulturowej różnorodności."
+        },
+        {
+            title: "Cesarz",
+            author: "Ryszard Kapuściński",
+            year: "1978",
+            description: "Reportaż o upadku Hajle Selasje, cesarza Etiopii. Kapuściński tworzy portret totalitarnej władzy, ceremonialnego dworu i mechanizmów tyranii, który czytano jako alegorię Polski Gierka.",
+            significance: "Arcydzieło reportażu literackiego, które wykracza poza dziennikarstwo. Uznawane za alegoryczne przedstawienie każdego totalitarnego systemu."
+        },
+        {
+            title: "Szachinszach",
+            author: "Ryszard Kapuściński",
+            year: "1982",
+            description: "Reportaż o rewolucji irańskiej i upadku szacha Pahlawiego. Kapuściński analizuje mechanizmy władzy, rolę religii i wybuch rewolucji fundamentalistycznej.",
+            significance: "Proroczereportaż o konflikcie między modernizacją a tradycją, który pomaga zrozumieć współczesny Bliski Wschód i islamski fundamentalizm."
+        },
+        {
+            title: "Heban",
+            author: "Ryszard Kapuściński",
+            year: "1998",
+            description: "Zbiór reportaży z Afryki, gdzie Kapuściński spędził lata jako korespondent. Przedstawia kontynent nie przez stereotypy, ale przez spotkania z konkretnymi ludźmi i ich historiami.",
+            significance: "Jeden z najważniejszych zachodnich tekstów o Afryce, choć krytykowany za literacką swobodę. Kapuściński humanizuje kontynent często pokazywany stereotypowo."
+        },
+        {
+            title: "Imperium",
+            author: "Ryszard Kapuściński",
+            year: "1993",
+            description: "Reportaż z podróży po rozpadającym się Związku Radzieckim. Kapuściński dokumentuje koniec imperium i narodziny nowej epoki w Rosji i republikach postsowieckich.",
+            significance: "Ważne świadectwo historycznego momentu - rozpadu ZSRR. Kapuściński łączy reportaż z osobistymi wspomnieniami i refleksją o naturze imperiów."
+        },
+        {
+            title: "Podróże z Herodotem",
+            author: "Ryszard Kapuściński",
+            year: "2004",
+            description: "Kapuściński splata własne doświadczenia reportera z lekturą Herodota, ojca historii i reportażu. Książka jest medytacją o sztuce opisywania świata i spotkania z Innym.",
+            significance: "Intelektualny testament Kapuścińskiego, łączący antyczność ze współczesnością. Refleksja o istocie reportażu i poznawania świata."
+        },
+        {
+            title: "Jeszcze dzień życia",
+            author: "Ryszard Kapuściński",
+            year: "1976",
+            description: "Reportaż z Angoli w momencie uzyskiwania niepodległości i wybuchu wojny domowej. Kapuściński opisuje chaos, przemoc i nadzieje dekolonizacji w intensywnym, osobistym stylu.",
+            significance: "Jeden z najlepszych reportaży wojennych Kapuścińskiego. Pokazuje dramatyzm dekolonizacji i początki zimnowojennych konfliktów w Afryce."
+        },
+        {
+            title: "Kiedy Kamień staje się Bogiem",
+            author: "Ryszard Kapuściński",
+            year: "2002",
+            description: "Eseje o podróżach, kulturze i religii. Kapuściński rozważa różne formy duchowości, od animizmu po wielkie religie, poszukując uniwersalnych ludzkich doświadczeń.",
+            significance: "Refleksja o antropologii religii przez pryzmat doświadczeń reportera. Pokazuje Kapuścińskiego jako filozofa kultury, nie tylko reportera."
+        },
+        {
+            title: "Rewolucja",
+            author: "Ryszard Kapuściński",
+            year: "1991",
+            description: "Reportaż z transformacji ustrojowej w Europie Wschodniej w 1989 roku. Kapuściński dokumentuje pokojowy koniec komunizmu i początek nowej ery.",
+            significance: "Świadectwo kluczowego momentu w historii Europy. Kapuściński uchwycił nastrój przełomu i nadziei końca lat 80."
+        },
+        {
+            title: "Autoportret reportera",
+            author: "Ryszard Kapuściński",
+            year: "2003",
+            description: "Rozmowy i eseje o warsztacie reportera, etyce dziennikarstwa i doświadczeniach z podróży. Kapuściński dzieli się swoją filozofią reportażu i obserwacją świata.",
+            significance: "Podręcznik i manifest dziennikarstwa literackiego. Wpływowy tekst dla kolejnych pokoleń reporterów i pisarzy non-fiction."
+        },
+        {
+            title: "Testament",
+            author: "Tadeusz Różewicz",
+            year: "1997",
+            description: "Zbiór poezji późnego Różewicza, w którym poeta rozlicza się z życiem, twórczością i XX wiekiem. Wiersze są oszczędne, pełne goryczy i mądrości.",
+            significance: "Jeden z ostatnich wielkich zbiorów Różewicza. Poeta w starości zachowuje ostrość widzenia i radykalizm formy."
+        },
+        {
+            title: "Matka odchodzi",
+            author: "Tadeusz Różewicz",
+            year: "1999",
+            description: "Dramat o śmierci matki i relacjach rodzinnych. Różewicz tworzy minimalistyczną, ale przejmującą medytację o starości, śmierci i pamięci.",
+            significance: "Jeden z najważniejszych polskich dramatów o starości i śmierci. Różewicz pokazuje te uniwersalne doświadczenia bez sentymentalizmu."
+        },
+        {
+            title: "Twarz",
+            author: "Tadeusz Różewicz",
+            year: "1964",
+            description: "Poemat o poszukiwaniu tożsamości po wojnie. Różewicz bada, co zostało z człowieczeństwa po doświadczeniu Holokaustu i totalitaryzmu.",
+            significance: "Kluczowy utwór dla zrozumienia powojennej kondycji człowieka. Różewicz stawia fundamentalne pytania o możliwość odbudowy tożsamości po traumie."
+        },
+        {
+            title: "Niepokój",
+            author: "Tadeusz Różewicz",
+            year: "1947",
+            description: "Debiutancki zbiór wierszy pokazujący traumę wojenną i poszukiwanie nowego języka poetyckiego. Różewicz radykalnie zrywa z tradycją, tworząc 'antypoezję'.",
+            significance: "Manifest polskiej poezji powojennej. Różewicz pokazał, że tradycyjny język poetycki jest nieadekwatny do opisania doświadczenia wojny."
+        },
+        {
+            title: "Wycieczka do muzeum",
+            author: "Tadeusz Różewicz",
+            year: "1966",
+            description: "Dramat o grupie turystów zwiedzających obóz koncentracyjny. Różewicz konfrontuje współczesny konsumpcjonizm z pamięcią o Holokauście.",
+            significance: "Prowokacyjny dramat o komercjalizacji pamięci o Holokauście. Różewicz krytykuje powierzchowność współczesnego podejścia do historii."
+        },
+        {
+            title: "Noc listopadowa",
+            author: "Stanisław Wyspiański",
+            year: "1904",
+            description: "Dramat o powstaniu listopadowym 1830 roku. Wyspiański przedstawia bohaterów narodowych w sposób krytyczny, kwestionując romantyczną mitologię.",
+            significance: "Rewizjonistyczne podejście do historii narodowej. Wyspiański dekonstruuje mity powstańcze, pokazując też ludzkie słabości bohaterów."
+        },
+        {
+            title: "Wyzwolenie",
+            author: "Stanisław Wyspiański",
+            year: "1903",
+            description: "Meta-teatralny dramat o próbach napisania dramatu narodowego. Wyspiański eksperymentuje z formą, tworząc sztukę o niemożności stworzenia sztuki.",
+            significance: "Najbardziej eksperymentalny dramat Wyspiańskiego. Wyprzedza techniki teatru w teatrze i metafikcji o dekady."
+        },
+        {
+            title: "Akropolis",
+            author: "Stanisław Wyspiański",
+            year: "1904",
+            description: "Dramat rozgrywający się w katedrze wawelskiej, gdzie w Wielką Noc ożywają postaci z historii Polski i Biblii. Wyspiański tworzy wizję Polski jako miejsca spotkania kultur.",
+            significance: "Symbolistyczne arcydzieło łączące historię Polski z uniwersalnymi mitami. Wyspiański kreuje wizję Polski jako syntezy wschodniej i zachodniej tradycji."
+        },
+        {
+            title: "Klątwa",
+            author: "Stanisław Wyspiański",
+            year: "1899",
+            description: "Dramat chłopski o bratobójstwie i rodzinnej tragedii. Wyspiański używa ludowego języka i obrzędów, tworząc polską wersję tragedii antycznej.",
+            significance: "Próba stworzenia tragedii ludowej na wzór grecki. Wyspiański pokazuje uniwersalność tragizmu przez pryzmat chłopskiej kultury."
+        },
+        {
+            title: "Sędziowie",
+            author: "Stanisław Wyspiański",
+            year: "1907",
+            description: "Dramat krytykujący galicyjską biurokrację i korupcję sądownictwa. Wyspiański satyryzuje austro-węgierski system prawny i polską kolaborację.",
+            significance: "Satyra polityczna na austro-węgierskie rządy i polską kolaborację. Wyspiański pokazuje moralny upadek elit pod zaborem."
+        },
+        {
+            title: "Legijon",
+            author: "Stanisław Wyspiański",
+            year: "1900",
+            description: "Dramat o Legionach Polskich u boku Napoleona. Wyspiański bada motywacje żołnierzy walczących za obcą armię w nadziei na niepodległość.",
+            significance: "Refleksja o dylemachch służby obcym armiom dla sprawy polskiej. Wyspiański kwestionuje jednoznaczną heroizację Legionów."
+        },
+        {
+            title: "Bolesław Śmiały",
+            author: "Stanisław Wyspiański",
+            year: "1903",
+            description: "Dramat historyczny o konflikcie króla Bolesława Śmiałego z biskupem Stanisławem. Wyspiański używa historii średniowiecznej do refleksji o władzy i Kościele.",
+            significance: "Kontrowersyjny dramat o relacjach państwa i Kościoła. Wyspiański porusza tematy tabu - władza królewska kontra autorytet religijny."
+        },
+        {
+            title: "Skałki krakowskie",
+            author: "Stanisław Wyspiański",
+            year: "1902",
+            description: "Dramat o świętym Stanisławie i królu Bolesławie. Wyspiański eksploruje mit narodowy i jego znaczenie dla współczesnej tożsamości polskiej.",
+            significance: "Kontynuacja refleksji o konflikcie władzy świeckiej i duchownej. Wyspiański dekonstruuje narodowe mity, ale też pokazuje ich siłę."
+        },
+        {
+            title: "Achilleis",
+            author: "Stanisław Wyspiański",
+            year: "1903",
+            description: "Dramat adaptujący mit Achillesa na polski grunt. Wyspiański łączy antyczną tragedię z polskimi realiami i współczesnymi problemami.",
+            significance: "Próba uniwersalizacji polskiego doświadczenia przez mit grecki. Wyspiański pokazuje ponadczasowość tragicznych dylematów."
+        },
+        {
+            title: "Powrót Odysa",
+            author: "Stanisław Wyspiański",
+            year: "1907",
+            description: "Adaptacja homeryckeigo mitu o powrocie Odyseusza do Itaki. Wyspiański tworzy wizję tęsknoty za ojczyzną i trudności powrotu.",
+            significance: "Metafora emigracji i powrotu do Polski. Wyspiański używa mitu greckiego do wyrażenia polskiego doświadczenia wygnania."
+        },
+        {
+            title: "Meleager",
+            author: "Stanisław Wyspiański",
+            year: "1906",
+            description: "Dramat oparty na micie greckim o Meleagrze. Wyspiański eksploruje tematy przeznaczenia, rodzinnej klątwy i niemożności ucieczki przed losem.",
+            significance: "Wyspiański pokazuje fascynację antykiem i próbę stworzenia polskiej tragedii na wzór grecki. Mit staje się wehikułem do wyrażenia uniwersalnych prawd."
+        },
+        {
+            title: "Protesilas i Laodamia",
+            author: "Stanisław Wyspiański",
+            year: "1899",
+            description: "Dramat o greckiej parze kochanków rozdzielonych przez wojnę trojańską. Wyspiański tworzy liryczną wizję miłości silniejszej niż śmierć.",
+            significance: "Wczesny przykład fascynacji Wyspiańskiego antykiem. Pokazuje jego zdolność do łączenia symbolizmu z emocjonalną głębią."
+        },
+        {
+            title: "Sezon",
+            author: "Michał Choromański",
+            year: "1936",
+            description: "Powieść kryminalna o tajemniczym morderstwie w pensjonacie nadmorskim. Choromański miesza gatunki - thriller z psychologią i egzystencjalną niepewnością.",
+            significance: "Jeden z najlepszych polskich kryminałów międzywojnia. Choromański przekracza granice gatunku, tworząc psychologiczny portret obsesji."
+        },
+        {
+            title: "Zazdrość i medycyna",
+            author: "Michał Choromański",
+            year: "1933",
+            description: "Powieść o lekarzu opętanym zazdrością o żonę. Choromański bada patologię uczuć i granice między rozsądkiem a obłędem w nowoczesnym, miejskim świecie.",
+            significance: "Psychologiczna proza międzywojnia na najwyższym poziomie. Choromański pokazuje destrukcyjną moc obsesji i niemożność racjonalnej kontroli emocji."
+        },
+        {
+            title: "Biesy",
+            author: "Maria Dąbrowska",
+            year: "1939",
+            description: "Powieść psychologiczna o inteligencji polskiej w przeddzień wojny. Dąbrowska tworzy portret pokolenia świadomego nadchodzącej katastrofy, ale niezdolnego do działania.",
+            significance: "Portret inteligenckiej bezsilności przed wojną. Dąbrowska uchwytuje nastrój końca epoki i lęk przed nieznanym."
+        },
+        {
+            title: "Znaki życia",
+            author: "Maria Dąbrowska",
+            year: "1925",
+            description: "Zbiór nowel o życiu w małych miasteczkach i na wsi. Dąbrowska z empatią opisuje losy zwykłych ludzi, ich marzenia i rozczarowania.",
+            significance: "Przykład realizmu psychologicznego Dąbrowskiej. Pokazuje jej zdolność do empatycznego portretowania ludzi z różnych środowisk."
+        },
+        {
+            title: "Przygody Sindbada Żeglarza",
+            author: "Maria Dąbrowska (przekład)",
+            year: "1913",
+            description: "Klasyczny przekład baśni arabskich dla dzieci. Dąbrowska stworzyła wersję, która na pokolenia wprowadziła polskie dzieci w świat orientalnej fantazji.",
+            significance: "Jeden z najbardziej udanych przekładów literatury dziecięcej. Dąbrowska pokazała mistrzowstwo nie tylko jako powieściopisarka, ale i tłumaczka."
+        },
+        {
+            title: "Geniusz sieroci",
+            author: "Maria Dąbrowska",
+            year: "1927",
+            description: "Opowiadanie o młodej kobiecie z prowincji próbującej znaleźć swoje miejsce w świecie. Dąbrowska bada ograniczenia społeczne i możliwości samorealizacji.",
+            significance: "Portret kobiety walczącej z ograniczeniami społecznymi i własnymi słabościami. Dąbrowska pokazuje trudność samorealizacji w patriarchalnym społeczeństwie."
+        },
+        {
+            title: "Marcin Kozera",
+            author: "Maria Dąbrowska",
+            year: "1956",
+            description: "Opowiadanie o chłopie, który wychodzi z biedy i staje się zamożnym rolnikiem. Dąbrowska celebruje chłopską przedsiębiorczość i ciężką pracę.",
+            significance: "Portret chłopskiej samodzielności i determinacji. Dąbrowska pokazuje pozytywne oblicze modernizacji wsi."
+        },
+        {
+            title: "Gra w klasy",
+            author: "Marek Hłasko",
+            year: "1956",
+            description: "Zbiór opowiadań o młodzieży w stalinowskiej Polsce - cynicznych, pozbawionych złudzeń, poszukujących autentyczności. Hłasko tworzy portret pokolenia po Październiku '56.",
+            significance: "Manifest polskiej 'beaten generation'. Hłasko pokazał nową młodzież - bezideową, ale poszukującą prawdy w świecie kłamstwa."
+        },
+        {
+            title: "Piękni dwudziestoletni",
+            author: "Marek Hłasko",
+            year: "1966",
+            description: "Opowiadanie o młodych ludziach w czasach stalinizmu, którzy tracą ideały i odkrywają pustkę systemu. Hłasko przedstawia rozczarowanie pokolenia wierzy w socjalizm.",
+            significance: "Brutalna demistyfikacja młodzieży socjalistycznej. Hłasko pokazał, że młodzi ludzie w PRL byli ofiarami, nie bohaterami systemu."
+        },
+        {
+            title: "Ósmy dzień tygodnia",
+            author: "Marek Hłasko",
+            year: "1956",
+            description: "Opowiadanie o parze kochanków bez mieszkania w przepełnionej Warszawie. Hłasko pokazuje absurd życia w socjalistycznym państwie, gdzie prywatność jest luksusem.",
+            significance: "Jeden z najbardziej znanych tekstów Hłaski. Pokazuje brutalność codziennego życia w PRL i niemożność normalnego życia osobistego."
+        },
+        {
+            title: "Nawrócony w Jaffie",
+            author: "Marek Hłasko",
+            year: "1968",
+            description: "Powieść o Polaku na emigracji w Izraelu. Hłasko bada tożsamość, wyobcowanie i niemożność powrotu do kraju. Autobiograficzne echo własnego wygnania.",
+            significance: "Portret emigranta bez ojczyzny. Hłasko pokazuje samotność wygnańca i niemożność znalezienia nowego domu."
+        },
+        {
+            title: "Brudne czyny",
+            author: "Marek Hłasko",
+            year: "1967",
+            description: "Powieść kryminalna o Polaku w RFN uwikłanym w gangsterskie porachunki. Hłasko tworzy noir o emigrancie w podświecie zachodniej Europy.",
+            significance: "Eksperyment gatunkowy Hłaski. Pokazuje emigracyjne życie przez pryzmat kryminału, budując atmosferę alienacji i przemocy."
+        },
+        {
+            title: "Drugie zabicie psa",
+            author: "Marek Hłasko",
+            year: "1965",
+            description: "Opowiadanie o brutalności i moralnej degradacji. Hłasko używa symboliki zabitego psa do przedstawienia utraty człowieczeństwa.",
+            significance: "Najbardziej brutalne i pesymistyczne opowiadanie Hłaski. Pokazuje jego wizję świata jako miejsca przemocy i okrucieństwa."
+        },
+        {
+            title: "Wszyscy byliśmy z milicji",
+            author: "Marek Hłasko",
+            year: "1962",
+            description: "Powieść o moralnym upadku w totalitarnym systemie. Hłasko pokazuje, jak wszyscy są uwikłani w mechanizmy opresji i nie ma niewinnych.",
+            significance: "Radykalna krytyka systemu i społeczeństwa. Hłasko twierdzi, że w totalitaryzmie wszyscy są współwinni."
+        },
+        {
+            title: "Pętla",
+            author: "Marek Hłasko",
+            year: "1963",
+            description: "Opowiadanie o alkoholiku próbującym wyjść z nałogu. Hłasko z brutalną szczerością przedstawia mechanizm uzależnienia i samozniszczenia.",
+            significance: "Autobiograficzny tekst o walce z alkoholizmem. Hłasko nie oszczędza czytelnika ani siebie, pokazując pełen horror nałogu."
+        },
+        {
+            title: "Następny do raju",
+            author: "Marek Hłasko",
+            year: "1958",
+            description: "Zbiór opowiadań o ludziach na marginesie - pijanych, bezrobotnych, zagubionych. Hłasko pokazuje ciemną stronę PRL, o której oficjalna propaganda milczała.",
+            significance: "Demitologizacja PRL i pokazanie ludzi wykluczonych. Hłasko był jednym z pierwszych, który pisał o polskim underclassie."
+        },
+        {
+            title: "Dżuma",
+            author: "Jacek Kaczmarski (piosenka)",
+            year: "1981",
+            description: "Piosenka inspirowana powieścią Camusa, ale odnosząca się do stanu wojennego w Polsce. Kaczmarski używa metafory dżumy do opisania totalitaryzmu.",
+            significance: "Hymn Solidarności i symbol oporu przeciwko stanowi wojennemu. Piosenka krążyła w podziemiu i dawała siłę opozycji."
+        },
+        {
+            title: "Mury",
+            author: "Jacek Kaczmarski",
+            year: "1978",
+            description: "Piosenka inspirowana katalońską piosenką o Komuny Paryskiej, zaadoptowana jako hymn Solidarności. Refren 'Murem za murem, murem, murem' stał się bojowym okrzykiem.",
+            significance: "Nieoficjalny hymn Solidarności i symbol walki z komunizmem. Jedna z najważniejszych piosenek w historii polskiej opozycji."
+        },
+        {
+            title: "Obława",
+            author: "Jacek Kaczmarski",
+            year: "1980",
+            description: "Piosenka o pacyfikacji getta warszawskiego, ale też metafora każdego prześladowania. Kaczmarski łączy pamięć Holokaustu z walką o wolność.",
+            significance: "Jeden z najbardziej przejmujących tekstów Kaczmarskiego. Używa pamięci o Holokauście do mówienia o współczesnym oporze."
+        },
+        {
+            title: "Rejtan",
+            author: "Jacek Kaczmarski",
+            year: "1980",
+            description: "Piosenka oparta na obrazie Matejki, opowiadająca o próbie zatrzymania pierwszego rozbioru Polski. Kaczmarski używa historii do komentowania współczesności.",
+            significance: "Przykład używania historii do komentarza politycznego. Kaczmarski pokazuje ciągłość polskiej walki o niepodległość."
+        },
+        {
+            title: "Epitafium dla Włodzimierza Wysockiego",
+            author: "Jacek Kaczmarski",
+            year: "1980",
+            description: "Hołd dla rosyjskiego barda, który był wzorem dla Kaczmarskiego. Piosenka o sile sztuki w totalitarnym systemie.",
+            significance: "Manifest wiary w moc poezji i piosenki. Kaczmarski celebruje artystów-dysydentów walczących słowem."
+        },
+        {
+            title: "Ballada o Janku Wiśniewskim",
+            author: "Krzysztof Dowgiałło",
+            year: "1971",
+            description: "Piosenka o robotniku zabitym w czasie strajku w Gdyni w 1970 roku. Symbol walki robotniczej i oporu przeciwko systemowi komunistycznemu.",
+            significance: "Hymn robotniczego oporu, zakazany w PRL. Opowieść o Wiśniewskim stała się symbolem walki o godność robotników."
+        },
+        {
+            title: "Kołysanka dla nieznajomej",
+            author: "Krzysztof Komeda",
+            year: "1963",
+            description: "Jazzowa ballada, która stała się jednym z najbardziej rozpoznawalnych polskich utworów jazzowych. Komeda stworzył melancholijny, poetycki nastrój.",
+            significance: "Najsłynniejszy utwór Komedy i symbol polskiego jazzu. Pokazuje możliwość wyrażenia głębokich emocji przez muzykę instrumentalną."
+        },
+        {
+            title: "Ballada o żołnierzach z Westerplatte",
+            author: "Andrzej Konic (tekst)",
+            year: "1960",
+            description: "Piosenka o obrońcach Westerplatte we wrześniu 1939. Opowiada o siedmiodniowej heroicznej obronie przeciwko przeważającym siłom niemieckim.",
+            significance: "Jedna z najważniejszych polskich piosenek patriotycznych o II wojnie światowej. Celebruje bohaterstwo obrońców Westerplatte."
+        },
+        {
+            title: "Biała armia, czarna armia",
+            author: "Piosenka ludowa",
+            year: "1920",
+            description: "Piosenka z wojny polsko-bolszewickiej 1920 roku. Opowiada o walce Polski przeciwko Armii Czerwonej i obronie niepodległości.",
+            significance: "Symbol polskiego zwycięstwa w 1920 roku i narodowej dumy. Piosenka przetrwała przez pokolenia jako świadectwo tamtych wydarzeń."
+        },
+        {
+            title: "Pierwsza Brygada",
+            author: "Andrzej Włast, Tadeusz Zalewski",
+            year: "1917",
+            description: "Marsz Legionów Polskich Józefa Piłsudskiego. Opowiada o walce legionistów po boku Austrii i o marzeniach o niepodległej Polsce.",
+            significance: "Hymn zwolenników Piłsudskiego i symbol legionowej tradycji. Jedna z najważniejszych polskich piosenek patriotycznych."
+        },
+        {
+            title: "Hej, tam pod Wiedniem",
+            author: "Piosenka ludowa",
+            year: "XVII wiek",
+            description: "Piosenka o odsieczy wiedeńskiej 1683 roku, gdy Jan III Sobieski pokonał Turków. Celebruje polskie zwycięstwo i chwałę militarną.",
+            significance: "Symbol polskiej chwały wojennej i roli Polski jako obrońcy chrześcijaństwa. Piosenka przetrwała przez wieki."
+        },
+        {
+            title: "Góralu, czy ci nie żal",
+            author: "Piosenka ludowa",
+            year: "1830",
+            description: "Piosenka powstańcza z powstania listopadowego. Wzywa górali do walki o wolność Polski. Stała się symbolem romantycznego patriotyzmu.",
+            significance: "Jedna z najstarszych i najpopularniejszych polskich piosenek patriotycznych. Symbol romantycznego etosu powstańczego."
+        },
+        {
+            title: "Warszawskie dzieci",
+            author: "Andrzej Słonimski, Henryk Wars",
+            year: "1936",
+            description: "Piosenka o dzieciach warszawskich ulic - biednych, ale pełnych życia i nadziei. Wars stworzył melancholijną melodię do tekstu Słonimskiego.",
+            significance: "Obraz międzywojennej Warszawy i jej mieszkańców. Piosenka zyskała dodatkowe znaczenie po zniszczeniu miasta w II wojnie."
+        },
+        {
+            title: "Warszawo ma",
+            author: "Mira Zimińska-Sygietyńska",
+            year: "1947",
+            description: "Piosenka o zburzonej Warszawie i nadziei na jej odbudowę. Zimińska wyraża miłość do miasta i determinację do jego przywrócenia do życia.",
+            significance: "Symbol odbudowy Warszawy i nadziei po wojnie. Piosenka pomogła w budowaniu morale zniszczonego narodu."
+        },
+        {
+            title: "Płonie ognisko w lesie",
+            author: "Piosenka harcerska",
+            year: "lata 20. XX w.",
+            description: "Klasyczna piosenka harcerska o biwaku, przyjaźni i naturze. Śpiewana przez pokolenia harcerzy przy ognisku.",
+            significance: "Symbol harcerskiej tradycji i młodzieńczej przyjaźni. Piosenka łączy pokolenia harcerzy przez cały XX wiek."
+        },
+        {
+            title: "Marsz Polonia",
+            author: "Feliks Nowowiejski",
+            year: "1908",
+            description: "Uroczysty marsz sławiący Polskę. Nowowiejski stworzył kompozycję łączącą elementy patriotyczne z muzyką klasyczną.",
+            significance: "Jedna z najważniejszych polskich kompozycji patriotycznych. Wykonywana na uroczystościach państwowych przez cały XX wiek."
+        },
+        {
+            title: "Mazurek Dąbrowskiego",
+            author: "Józef Wybicki",
+            year: "1797",
+            description: "Hymn narodowy Polski, napisany dla Legionów Polskich we Włoszech. Wyraża nadzieję na odzyskanie niepodległości i wiarę w powrót Polski.",
+            significance: "Hymn Polski od 1927 roku. Symbol polskiego oporu i nadziei na niepodległość przez cały okres zaborów."
+        },
+        {
+            title: "Boże, coś Polskę",
+            author: "Alojzy Feliński",
+            year: "1816",
+            description: "Religijna pieśń patriotyczna modlitwa o wolność dla Polski. Była nieoficjalnym hymnem Polski przez cały XIX wiek.",
+            significance: "Najważniejsza polska pieśń religijna i patriotyczna. Łączy wiarę katolicką z kultem ojczyzny."
+        },
+        {
+            title: "Bogurodzica",
+            author: "Anonimowy",
+            year: "XIII wiek",
+            description: "Najstarsza polska pieśń religijna, śpiewana przez rycerzy przed bitwą pod Grunwaldem. Hymn do Matki Boskiej będący najstarszym tekstem poetyckim w języku polskim.",
+            significance: "Najstarszy zachowany utwór w języku polskim. Symbol polskiej tradycji religijnej i rycerskiej."
+        },
+        {
+            title: "Hymn do miłości ojczyzny",
+            author: "Ignacy Krasicki",
+            year: "1774",
+            description: "Klasycystyczny hymn wzywający do miłości ojczyzny i pracy dla dobra wspólnego. Krasicki łączy patriotyzm z oświeceniowym racjonalizmem.",
+            significance: "Przykład oświeceniowego patriotyzmu - rozumnego, opartego na pracy organicznej, nie na emocjach."
+        },
+        {
+            title: "Do trupa",
+            author: "Franciszek Karpiński",
+            year: "1780",
+            description: "Wiersz medytujący nad śmiercią i przemijaniem. Karpiński tworzy sentymentalną refleksję o marności życia w stylu rokoka.",
+            significance: "Przykład polskiego sentymentalizmu i poezji żałobnej. Wiersz wpłynął na rozwój polskiej poezji refleksyjnej."
+        },
+        {
+            title: "Laura i Filon",
+            author: "Franciszek Karpiński",
+            year: "1780",
+            description: "Sielanka o nieszczęśliwej miłości wiejskich kochanków. Karpiński tworzy arkadyjską wizję miłości i natury w stylu rokoka.",
+            significance: "Najlepsza polska sielanka, wprowadzająca rokoko do polskiej poezji. Wpłynęła na rozwój polskiej poezji pasterskiej."
+        },
+        {
+            title: "Nie porzucaj nadziei",
+            author: "Franciszek Karpiński",
+            year: "1792",
+            description: "Wiersz napisany po drugim rozbiorze Polski, wzywający do zachowania nadziei mimo tragedii narodowej. Karpiński łączy patriotyzm z religijną ufnością.",
+            significance: "Wiersz pocieszenia w czasie narodowej katastrofy. Karpiński pokazuje, jak wiara religijna może wspierać patriotyzm."
+        },
+        {
+            title: "Pieśni nabożne",
+            author: "Franciszek Karpiński",
+            year: "1792",
+            description: "Zbiór pieśni religijnych, w tym słynna 'Kiedy ranne wstają zorze'. Karpiński stworzył najpopularniejsze polskie pieśni kościelne.",
+            significance: "Najważniejszy zbiór polskich pieśni religijnych. Karpiński ukształtował polski katolicyzm przez swoją poezję."
+        },
+        {
+            title: "Kiedy ranne wstają zorze",
+            author: "Franciszek Karpiński",
+            year: "1792",
+            description: "Najsłynniejsza polska pieśń religijna, modlitwa poranna do Matki Boskiej. Śpiewana w kościołach i domach przez pokolenia Polaków.",
+            significance: "Najważniejsza polska pieśń maryjna. Część polskiej tożsamości religijnej i kulturowej."
+        },
+        {
+            title: "Treny",
+            author: "Jan Kochanowski",
+            year: "1580",
+            description: "Cykl 19 trenów (pieśni żałobnych) napisanych po śmierci małej córki poety, Urszulki. Kochanowski wyraża ojcowski ból i poszukiwanie pociechy w filozofii i wierze.",
+            significance: "Arcydzieło polskiego renesansu i jeden z największych cykli elegijnych w literaturze europejskiej. Uniwersalny wyraz bólu rodzicielskiego."
+        },
+        {
+            title: "Odprawa posłów greckich",
+            author: "Jan Kochanowski",
+            year: "1578",
+            description: "Pierwszy polski dramat, oparty na epizodzie z wojny trojańskiej. Kochanowski tworzy tragedię o dumie i konsekwencjach odrzucenia pokoju.",
+            significance: "Pierwszy polski dramat literacki i jeden z pierwszych dramatów w języku narodowym w Europie. Fundament polskiego teatru."
+        },
+        {
+            title: "Pieśni",
+            author: "Jan Kochanowski",
+            year: "1586",
+            description: "Zbiór poezji lirycznej inspirowanej antykiem, ale traktującej o współczesnych tematach - miłości, przyjaźni, ojczyźnie, filozofii. Kochanowski tworzy polski renesansowy humanizm.",
+            significance: "Najważniejszy zbiór poezji polskiego renesansu. Kochanowski stworzył wzorcowy język polski poezji."
+        },
+        {
+            title: "Fraszki",
+            author: "Jan Kochanowski",
+            year: "1584",
+            description: "Zbiór krótkich wierszy - epigramatów, żartów, sentencji, obserwacji. Kochanowski pokazuje dowcip, mądrość życiową i umiejętność zwięzłego wyrażania myśli.",
+            significance: "Wzór polskiego epigramu. Wiele fraszek Kochanowskiego stało się przysłowiami i weszło do języka potocznego."
+        },
+        {
+            title: "Psalm 150",
+            author: "Jan Kochanowski (przekład)",
+            year: "1580",
+            description: "Przekład Psalmu 150 z Biblii, będący jednocześnie hymnem pochwalnym. Kochanowski stworzył wersję śpiewaną jako pieśń kościelna przez stulecia.",
+            significance: "Najsłynniejszy polski przekład psalmów. Kochanowski uczynił Psalmy częścią polskiej poezji religijnej."
+        },
+        {
+            title: "Psałterz Dawidów",
+            author: "Jan Kochanowski (przekład)",
+            year: "1580",
+            description: "Przekład wszystkich 150 psalmów z Biblii. Kochanowski stworzył wersję poetycką dostosowaną do polskiego języka i wrażliwości.",
+            significance: "Monumentalne dzieło translatorskie, które ukształtowało polski język religijny i poetycki. Fundamentalny tekst polskiej kultury."
+        },
+        {
+            title: "Concordia",
+            author: "Jan Kochanowski",
+            year: "1564",
+            description: "Wiersz polityczny wzywający do zgody między katolikami a protestantami. Kochanowski promował tolerancję religijną w czasie wojen religijnych.",
+            significance: "Ważny dokument polskiej tolerancji religijnej. Kochanowski był rzecznikiem pokoju wyznaniowego w epoce fanatyzmu."
+        },
+        {
+            title: "Satyr",
+            author: "Jan Kochanowski",
+            year: "1564",
+            description: "Satyra na życie dworskie i politykę. Kochanowski krytykuje korupcję, intrygi i moralny upadek dworu królewskiego.",
+            significance: "Przykład renesansowej satyry społecznej. Kochanowski pokazuje odwagę w krytykowaniu władzy i elit."
+        },
+        {
+            title: "Zuzanna",
+            author: "Mikołaj Rej",
+            year: "1562",
+            description: "Poemat oparty na biblijnej historii Zuzanny oskarżonej o cudzołóstwo. Rej tworzy moralitet o cnocie, fałszywym oskarżeniu i Bożej sprawiedliwości.",
+            significance: "Jeden z pierwszych polskich poematów drukowanych. Rej używa biblijnej historii do nauczania moralności."
+        },
+        {
+            title: "Krótka rozprawa",
+            author: "Mikołaj Rej",
+            year: "1543",
+            description: "Dialog filozoficzny o trzech stanach - szlachcica, plebana i pospólstwa. Rej przedstawia satyrę społeczną i krytykę wszystkich stanów społecznych.",
+            significance: "Wczesny przykład polskiej satyry społecznej. Rej krytykuje wady wszystkich klas, promując reformację moralną."
+        },
+        {
+            title: "Wizerunek własny żywota człowieka poczciwego",
+            author: "Mikołaj Rej",
+            year: "1558",
+            description: "Rozległy utwór dydaktyczny o życiu szlachcica - od narodzin po śmierć. Rej tworzy podręcznik moralności i obyczaju dla szlachty polskiej.",
+            significance: "Encyklopedia życia renesansowego szlachcica. Rej stworzył wzorzec cnót obywatelskich i rodzinnych."
+        },
+        {
+            title: "Figliki",
+            author: "Mikołaj Rej",
+            year: "1562",
+            description: "Zbiór anegdot, żartów i fraszek. Rej pokazuje humor i dowcip, często kpiąc z ludzkich słabości i głupoty.",
+            significance: "Przykład polskiego humoru renesansowego. Rej zademonstrował, że język polski nadaje się do wszystkich gatunków literackich."
+        },
+        {
+            title: "Żywot Józefa",
+            author: "Mikołaj Rej",
+            year: "1545",
+            description: "Poemat oparty na biblijnej historii Józefa Egipskiego. Rej tworzy moralne przedstawienie o Bożej opatrzności i nagrodzie za cnotę.",
+            significance: "Wczesny przykład polskiej epiki biblijnej. Rej używa Biblii do nauczania moralności i cierpliwości."
+        },
+        {
+            title: "Zwierciadło",
+            author: "Mikołaj Rej",
+            year: "1568",
+            description: "Dialog satyryczny o różnych stanach społecznych i ich wadach. Rej tworzy lustro społeczeństwa, pokazując hipokryzję i niemoralność.",
+            significance: "Satyra społeczna krytykująca wszystkie stany. Rej nie oszczędza nikogo - ani duchowieństwa, ani szlachty, ani mieszczan."
+        },
+        {
+            title: "Kazania sejmowe",
+            author: "Piotr Skarga",
+            year: "1597",
+            description: "Zbiór kazań politycznych Skargi, jezuity i kaznodziei królewskiego. Skarga krytykuje anarchię szlachecką, liberum veto i egoizm magnaterii.",
+            significance: "Profetyczne ostrzeżenia przed upadkiem Rzeczypospolitej. Skarga przewidział przyczyny przyszłych klęsk Polski - brak reform i anarchię."
+        },
+        {
+            title: "Żywoty świętych",
+            author: "Piotr Skarga",
+            year: "1579",
+            description: "Monumentalny zbiór hagiografii świętych katolickich. Skarga stworzył dzieło, które kształtowało polską religijność przez wieki.",
+            significance: "Najważniejsze polskie dzieło hagiograficzne. Skarga wpłynął na pobożność i wyobraźnię religijną pokoleń Polaków."
+        },
+        {
+            title: "O jedności Kościoła Bożego",
+            author: "Piotr Skarga",
+            year: "1577",
+            description: "Polemika religijna bronąc jedności Kościoła katolickiego przeciwko reformacji. Skarga argumentuje za katolicyzmem i przeciwko protestantyzmowi.",
+            significance: "Najważniejsze polskie dzieło kontrreformacyjne. Skarga był głównym orędownikiem katolicyzmu w epoce wojen religijnych."
+        },
+        {
+            title: "Lament niewolnika greckiego",
+            author: "Sebastian Fabian Klonowic",
+            year: "1596",
+            description: "Poemat o niewolniku greckim porwanym przez Turków. Klonowic tworzy wzruszającą opowieść o utracie wolności i tęsknocie za ojczyzną.",
+            significance: "Przykład polskiej poezji antykureckiej. Klonowic używa tematu niewoli do patriotycznej refleksji."
+        },
+        {
+            title: "Roxolania",
+            author: "Sebastian Fabian Klonowic",
+            year: "1584",
+            description: "Poemat opisujący Ruś Czerwoną (Roxolanię) i jej mieszkańców. Klonowic tworzy poetycki portret kresów wschodnich Rzeczypospolitej.",
+            significance: "Jeden z pierwszych polskich poematów regionalistycznych. Klonowic pokazał piękno i różnorodność kresów wschodnich."
+        },
+        {
+            title: "Flis",
+            author: "Sebastian Fabian Klonowic",
+            year: "1595",
+            description: "Poemat o spławie wiślanym - flisakach spławiających drewno i zboże do Gdańska. Klonowic opisuje życie na Wiśle i krajobraz nadwiślański.",
+            significance: "Pierwszy polski poemat realistyczny o pracy. Klonowic wprowadził do poezji wątki gospodarcze i codzienne życie ludu."
+        },
+        {
+            title: "Victoria deorum",
+            author: "Sebastian Fabian Klonowic",
+            year: "1587",
+            description: "Poemat łaciński o elekcji Zygmunta III Wazy. Klonowic celebruje polską wolność i system elekcyjny monarchy.",
+            significance: "Świadectwo polskiego systemu politycznego. Klonowic pokazał dumę z Rzeczypospolitej szlacheckiej."
+        },
+        {
+            title: "Judyta",
+            author: "Łukasz Górnicki",
+            year: "1587",
+            description: "Poemat biblijny o Judycie, która zabija Holofernesa ratując swój lud. Górnicki tworzy bohaterską opowieść o odwadze i wierze.",
+            significance: "Przykład polskiej epiki biblijnej renesansu. Górnicki wykorzystał mit do promocji cnót obywatelskich."
+        },
+        {
+            title: "Dworzanin polski",
+            author: "Łukasz Górnicki",
+            year: "1566",
+            description: "Adaptacja 'Dworzanina' Castiglionego - podręcznik zachowania dla szlachcica. Górnicki opisuje ideał polskiego dworzanina - uczonego, cnotliwego i patrioty.",
+            significance: "Najważniejsze polskie dzieło renesansowego humanizmu. Górnicki ukształtował ideał polskiego szlachcica na wieki."
+        },
+        {
+            title: "Rozmowa Polaka z Włochem",
+            author: "Łukasz Górnicki",
+            year: "1553",
+            description: "Dialog między Polakiem a Włochem o zaletach obu narodów. Górnicki broni Polski przed zachodnią pogardą, pokazując jej cnoty.",
+            significance: "Wczesny przykład polskiego nacjonalizmu kulturowego. Górnicki domagał się szacunku dla Polski od Zachodu."
+        },
+        {
+            title: "Officina ferraria",
+            author: "Walenty Roździeński",
+            year: "1612",
+            description: "Poemat dydaktyczny o hutnictwie żelaza. Roździeński szczegółowo opisuje proces produkcji żelaza i pracę w kuźni.",
+            significance: "Pierwszy polski poemat techniczny. Roździeński wprowadził do poezji tematykę przemysłową i technologiczną."
+        },
+        {
+            title: "Aeneas Polonus",
+            author: "Paweł Piasecki",
+            year: "1623",
+            description: "Poemat łaciński porównujący Polaków do Eneaszowych Trojan. Piasecki tworzy mit sarmatyzmu - Polacy jako potomkowie starożytnych Sarmatów.",
+            significance: "Początek mitu sarmatyckiego w literaturze. Piasecki ustanowił legendarną genealogię szlachty polskiej."
+        },
+        {
+            title: "Goffred",
+            author: "Piotr Kochanowski (przekład)",
+            year: "1618",
+            description: "Przekład włoskiego eposu Tassa 'Jerozolima wyzwolona'. Kochanowski stworzył polską wersję wielkiego eposu o pierwszej krucjacie.",
+            significance: "Najważniejsze polskie tłumaczenie epiki zachodniej. Kochanowski wprowadził Polaków w tradycję eposu rycerskiego."
+        },
+        {
+            title: "Emblemata",
+            author: "Zbigniew Morsztyn",
+            year: "1648",
+            description: "Zbiór emblematów - symboli z wyjaśnieniami moralnymi i religijnymi. Morsztyn tworzy barokowe połączenie obrazu i słowa.",
+            significance: "Przykład polskiej literatury emblematycznej baroku. Morsztyn wprowadził modę na emblematy do Polski."
+        },
+        {
+            title: "Muza domowa",
+            author: "Jan Andrzej Morsztyn",
+            year: "1689",
+            description: "Zbiór poezji erotycznej i galantnej. Morsztyn celebruje miłość zmysłową w wyszukanym, barokowym stylu.",
+            significance: "Szczyt polskiej poezji barokowej i galantnej. Morsztyn wprowadził zmysłowość i wyszukaność do polskiej liryki."
+        },
+        {
+            title: "Lutnia",
+            author: "Jan Andrzej Morsztyn",
+            year: "1661",
+            description: "Zbiór sonetów miłosnych inspirowanych włoskim marinizmem. Morsztyn tworzy wyszukaną poezję pełną metafor i gier słownych.",
+            significance: "Najwyższej klasy polska poezja barokowa. Morsztyn osiągnął poziom europejskich poetów marinistycznych."
+        },
+        {
+            title: "Pieśń świętojańska o Sobótce",
+            author: "Jan Kochanowski",
+            year: "1586",
+            description: "Poemat o święcie Kupały (Sobótce) - połączeniu chrześcijańskiego święta św. Jana z pogańskimi obrzędami. Kochanowski tworzy magiczny obraz nocy świętojańskiej.",
+            significance: "Najpiękniejszy polski poemat o ludowych obrzędach. Kochanowski zachował pamięć o pogańskich tradycjach."
+        },
+        {
+            title: "Proporzec",
+            author: "Jan Kochanowski",
+            year: "1569",
+            description: "Wiersz polityczny broniący praw szlachty i wolności. Kochanowski używa alegorii proporczyka jako symbolu polskiej wolności.",
+            significance: "Przykład poezji politycznej Kochanowskiego. Wyraża ideały szlacheckie wolności i równości."
+        },
+        {
+            title: "Szachy",
+            author: "Jan Kochanowski",
+            year: "1564",
+            description: "Poemat alegoryczny o grze w szachy jako metaforze życia politycznego i społecznego. Kochanowski pokazuje hierarchię społeczną przez figury szachowe.",
+            significance: "Pozostały fragment większego dzieła alegorycznego. Kochanowski używa gry do komentarza społecznego."
+        },
+        {
+            title: "Pieśń o spustoszeniu Podola",
+            author: "Jan Kochanowski",
+            year: "1575",
+            description: "Poemat o najazdach tatarskich na Podole. Kochanowski opisuje zniszczenia i cierpienie ludności kresowej.",
+            significance: "Świadectwo walk na kresach wschodnich. Kochanowski upamiętnił tragedię Podola i walki z Tatarami."
+        },
+        {
+            title: "Pamiętnik",
+            author: "Jakub Sobieski",
+            year: "1646",
+            description: "Wspomnienia ojca króla Jana III, marszałka wielkiego koronnego. Sobieski opisuje życie polityczne i militarne Rzeczypospolitej.",
+            significance: "Ważne źródło historyczne o pierwszej połowie XVII wieku. Sobieski był uczestnikiem kluczowych wydarzeń swojej epoki."
+        },
+        {
+            title: "Transakcja wojny chocimskiej",
+            author: "Wacław Potocki",
+            year: "1670",
+            description: "Poemat epicki o bitwie pod Chocimiem 1621 roku. Potocki celebruje zwycięstwo nad Turkami i bohaterstwo polskiego rycerstwa.",
+            significance: "Najważniejszy polski poemat epicki baroku. Potocki stworzył narodową epopeje o walce z islamem."
+        },
+        {
+            title: "Ogród fraszek",
+            author: "Wacław Potocki",
+            year: "1691",
+            description: "Zbiór ponad 300 fraszek - krótkich wierszy satyrycznych, moralnych, politycznych. Potocki komentuje wydarzenia swojej epoki.",
+            significance: "Najobszerniejszy polski zbiór fraszek po Kochanowskim. Potocki stworzył kronikę poetycką XVII wieku."
+        },
+        {
+            title: "Poczet herbów szlachty Korony Polskiej i Wielkiego Księstwa Litewskiego",
+            author: "Szymon Okolski",
+            year: "1641",
+            description: "Monumentalne dzieło o heraldyce polskiej. Okolski opisał setki herbów szlacheckich i ich historie.",
+            significance: "Fundament polskiej heraldyki. Okolski zachował pamięć o rodach szlacheckich i ich dziejach."
+        },
+        {
+            title: "Apolodja",
+            author: "Andrzej Frycz Modrzewski",
+            year: "1571",
+            description: "Apologia protestantyzmu i obrona wolności religijnej. Modrzewski argumentuje za tolerancją i prawem do własnego wyznania.",
+            significance: "Najważniejsze polskie dzieło reformacyjne. Modrzewski był orędownikiem tolerancji w epoce wojen religijnych."
+        },
+        {
+            title: "O poprawie Rzeczypospolitej",
+            author: "Andrzej Frycz Modrzewski",
+            year: "1551-1554",
+            description: "Traktat polityczny proponujący reformy ustrojowe Polski. Modrzewski krytykuje przywileje szlacheckie i proponuje większą równość.",
+            significance: "Najradykalniejszy polski program reform XVI wieku. Modrzewski wyprzedził epokę, proponując równość wobec prawa."
+        },
+        {
+            title: "Historyja żałosna",
+            author: "Mikołaj Rej",
+            year: "1545",
+            description: "Poemat o śmierci Jezusa Chrystusa. Rej tworzy wzruszającą narrację o męce i ukrzyżowaniu.",
+            significance: "Wczesny przykład polskiej poezji pasyjnej. Rej wprowadził do literatury ludowe formy pobożności."
+        },
+        {
+            title: "Kupiec",
+            author: "Mikołaj Rej",
+            year: "1549",
+            description: "Satyra na kupców i ich chciwość. Rej krytykuje materializmowanie społeczeństwa i upadek wartości.",
+            significance: "Wczesna krytyka kapitalizmu w polskiej literaturze. Rej ostrzegał przed dominacją pieniądza nad moralnością."
+        },
+        {
+            title: "Apokalipsa",
+            author: "Mikołaj Rej",
+            year: "1565",
+            description: "Przekład Apokalipsy św. Jana z komentarzami. Rej tworzy protestantską wersję ostatniej księgi Biblii.",
+            significance: "Ważny przekład biblijny reformacji. Rej udostępnił Biblię w języku polskim prostym ludziom."
+        },
+        {
+            title: "Postylla",
+            author: "Mikołaj Rej",
+            year: "1557",
+            description: "Zbiór kazań na cały rok kościelny. Rej tworzy protestantycką postyłęczasnym językiem dla szlachty."
+            significance: "Najważniejsze polskie dzieło kaznodziejskie reformacji. Rej kształtował religijność protestanckiej szlachty."
+        },
+        {
+            title: "Fables",
+            author: "Ignacy Krasicki",
+            year: "1779",
+            description: "Drugi tom bajek Krasickiego, kontynuujący tradycję ezopową. Więcej bajek moralnych i satyrycznych.",
+            significance: "Potwierdzenie mistrzostwa Krasickiego w gatunku bajki. Dalsze wzbogacenie polskiego języka potocznego."
+        },
+        {
+            title: "Myszeidos",
+            author: "Ignacy Krasicki",
+            year: "1775",
+            description: "Poemat heroikomiczny o wojnie między myszami a łasicami. Krasicki satyryzuje wojnę i politykę przez zwierzęcą alegorię.",
+            significance: "Mistrzostwo w gatunku heroikomicznym. Krasicki kpi z wojen i ambicji władców."
+        },
+        {
+            title: "Mikołaja Doświadczyńskiego przypadki",
+            author: "Ignacy Krasicki",
+            year: "1776",
+            description: "Pierwsza polska powieść - historia Mikołaja podróżującego po świecie i poznającego różne społeczeństwa. Krasicki tworzy oświeceniową utopię.",
+            significance: "Pierwsza polska powieść nowoczesna. Krasicki wprowadził do literatury gatunek powieści filozoficznej."
+        },
+        {
+            title: "Pan Twardowski",
+            author: "Michał Bałucki",
+            year: "1873",
+            description: "Komedia ludowa o legendarnym czarodzieju Twardowskim. Bałucki adaptuje ludową legendę na scenę teatralną.",
+            significance: "Najpopularniejsza polska komedia ludowa XIX wieku. Bałucki wprowadził folklor do teatru."
+        },
+        {
+            title: "Grube ryby",
+            author: "Michał Bałucki",
+            year: "1881",
+            description: "Komedia satyryczna o korupcji i nepotizmie w galicyjskiej administracji. Bałucki kpi z 'grubych ryb' - wpływowych urzędników.",
+            significance: "Satyra na biurokrację austro-węgierską. Bałucki pokazał mechanizmy korupcji i protekcji."
+        },
+        {
+            title: "Dom otwarty",
+            author: "Michał Bałucki",
+            year: "1883",
+            description: "Komedia o życiu towarzyskim w Krakowie. Bałucki satyryzuje galicyjskie mieszczaństwo i jego pretensje.",
+            significance: "Portret galicyjskiego społeczeństwa. Bałucki mistrz był satyr obyczajowej."
+        },
+        {
+            title: "Jawnogrzesznica",
+            author: "Józef Blizinski",
+            year: "1872",
+            description: "Melodramat o kobiecie upadłej próbującej odnaleźć się w społeczeństwie. Blizinski tworzy wzruszający portret odrzucenia i odkupienia.",
+            significance: "Najpopularniejszy polski melodramat XIX wieku. Blizinski poruszał tematy społeczne przez sentymentalne historie."
+        },
+        {
+            title: "Panie Kochanku",
+            author: "Józef Blizinski",
+            year: "1871",
+            description: "Komedia o kawalerze poszukującym żony. Blizinski tworzy lekką komedię romantyczną o miłości i małżeństwie.",
+            significance: "Najpopularniejsza polska komedia romantyczna XIX wieku. Blizinski mistrz był lekkiej rozrywki."
+        },
+        {
+            title: "Zemsta",
+            author: "Aleksander Fredro",
+            year: "1834",
+            description: "Komedia o swaśnionych sąsiadach, Cześniku i Rejentowie, których dzieci się kochają. Fredro tworzy arcydzieło komizmu sytuacyjnego i językowego.",
+            significance: "Najsłynniejsza polska komedia wszechczasów. Fredro osiągnął szczyt mistrzostwa w dialogu i konstrukcji komedii."
+        },
+        {
+            title: "Pan Jowialski",
+            author: "Aleksander Fredro",
+            year: "1832",
+            description: "Komedia o szlachcicu, który udaje zubożałego, by sprawdzić swoją narzeczoną. Fredro bada motywacje miłości - uczucie czy pieniądze?",
+            significance: "Błyskotliwa komedia intrygi. Fredro pokazuje ludzkie słabości i chciwość z humorem."
+        },
+        {
+            title: "Śluby panieńskie",
+            author: "Aleksander Fredro",
+            year: "1832",
+            description: "Komedia o pannach, które przysięgają nie wychodzić za mąż. Oczywiście przysięgi nie przetrwają spotkania z kawalerami.",
+            significance: "Lekka komedia romantyczna o potędze miłości. Fredro mistrz był weselej farsy."
+        },
+        {
+            title: "Dożywocie",
+            author: "Aleksander Fredro",
+            year: "1835",
+            description: "Komedia o starym szlachcicu przekazującym majątek synowi w zamian za dożywocie. Konflikt pokoleń i walka o władzę w rodzinie.",
+            significance: "Gorzka komedia o ludzkiej naturze. Fredro pokazuje egoizm i walkę o majątek bez sentymentu."
+        },
+        {
+            title: "Maiłgorzatki",
+            author: "Aleksander Fredro",
+            year: "1843",
+            description: "Komedia o intryżących kobietach rywalizujących o męża. Fredro tworzy błyskotliwy portret kobiecej rywalizacji.",
+            significance: "Komedia obyczajowa o damach i ich grach. Fredro pokazuje kobiety jako równie sprytne jak mężczyźni."
+        },
+        {
+            title: "Pan Geldhab",
+            author: "Aleksander Fredro",
+            year: "1821",
+            description: "Satyra na kupców i mieszczan. Fredro kpi z materializmu i braku ogłady ludzi interesu.",
+            significance: "Wczesna satyra Fredr na mieszczaństwo. Pokazuje dystans szlachty do klasy kupieckiej."
+        },
+        {
+            title: "Nowy Don Kiszot",
+            author: "Ignacy Krasicki",
+            year: "1781",
+            description: "Poemat satyryczny wzorowany na Cervantesie. Krasicki tworzy polskiego Don Kichota walczącego z wyimaginowanymi wiatrakami.",
+            significance: "Adaptacja hiszpańskiego arcydzieła na polski grunt. Krasicki satyryzuje szlacheckie fobie i manie."
+        },
+        {
+            title: "Hymn do słońca",
+            author: "Franciszek Karpiński",
+            year: "1783",
+            description: "Oda do słońca jako symbolu Bożego stworzenia. Karpiński celebruje naturę i jej piękno jako dzieło Boże.",
+            significance: "Przykład sentymentalnej poezji przyrodniczej. Karpiński łączył miłość natury z uczuciem religijnym."
+        },
+        {
+            title: "Rozprawa o nędzy pospólstwa",
+            author: "Stanisław Staszic",
+            year: "1789",
+            description: "Traktat ekonomiczny i społeczny o ubóstwie chłopstwa. Staszic domaga się reform i uwolnienia chłopów.",
+            significance: "Radykalny program reform społecznych. Staszic był jednym z pierwszych, którzy domagali się zniesienia pańszczyzny."
+        },
+        {
+            title: "Uwagi nad życiem Jana Zamoyskiego",
+            author: "Stanisław Staszic",
+            year: "1787",
+            description: "Biografia Jana Zamoyskiego jako wzorca cnót obywatelskich. Staszic promuje ideał wykształconego i patriotycznego szlachcica.",
+            significance: "Przykład oświeceniowej biografistyki. Staszic promował edukację i reformy przez historyczne przykłady."
+        },
+        {
+            title: "Przestrogi dla Polski",
+            author: "Stanisław Staszic",
+            year: "1790",
+            description: "Esej polityczny wzywający do reform i ostrzegający przed upadkiem Polski. Staszic widział zagrożenia dla Rzeczypospolitej.",
+            significance: "Profetyczne ostrzeżenia przed rozbiorami. Staszic próbował ratować Polskę przez reformy."
+        },
+        {
+            title: "Uwagi o teraźniejszym położeniu tej części ziemi polskiej",
+            author: "Hugo Kołłątaj",
+            year: "1788",
+            description: "Analiza polityczna sytuacji Polski przed Sejmem Czteroletnim. Kołłątaj proponuje reformy ustrojowe.",
+            significance: "Kluczowy tekst Sejmu Czteroletniego. Kołłątaj był ideologiem oświeceniowych reform."
+        },
+        {
+            title: "Prawo polityczne narodu polskiego",
+            author: "Hugo Kołłątaj",
+            year: "1790",
+            description: "Traktat konstytucyjny proponujący nowy ustrój Polski. Kołłątaj wizję demokracji obywatelskiej.",
+            significance: "Teoretyczne podstawy Konstytucji 3 Maja. Kołłątaj był głównym architektem reform ustrojowych."
+        },
+        {
+            title: "Kuźnica Kołłątajowska",
+            author: "Hugo Kołłątaj i współpracownicy",
+            year: "1791",
+            description: "Czasopismo polityczne promujące reformy. Grupa intelektualistów wokół Kołłątaja propagowała oświeceniowe idee.",
+            significance: "Najważniejsze czasopismo polskiego oświecenia. Kuźnica Kołłątajowska kształtowała opinię publiczną."
+        },
+        {
+            title: "Stan obecny oświecenia w Polsce",
+            author: "Stanisław Konarski",
+            year: "1750",
+            description: "Esej o edukacji w Polsce. Konarski krytykuje niski poziom szkolnictwa i proponuje reformy.",
+            significance: "Manifest reformy edukacyjnej. Konarski był pionierem nowoczesnego szkolnictwa w Polsce."
+        },
+        {
+            title: "O skutecznym rad sposobie",
+            author: "Stanisław Konarski",
+            year: "1760-1763",
+            description: "Traktat polityczny o reformie sejmu. Konarski proponuje abolicję liberum veto i inne reformy.",
+            significance: "Pierwszy program reformy ustrojowej w XVIII wieku. Konarski rozpoczął dyskusję o naprawie państwa."
+        },
+        {
+            title: "Monita secreta",
+            author: "Domniemanie autorstwa jezuitów",
+            year: "XVII wiek",
+            description: "Fałszerstwo przedstawiające tajne instrukcje jezuitów. Dokument używany do antyjezuickiej propagandy.",
+            significance: "Najsłynniejsze fałszerstwo antyjezuickie. Pokazuje siłę propagandy i teorii spiskowych w historii."
+        },
+        {
+            title: "Dzieje Polski krótko zebrane",
+            author: "Jan Długosz",
+            year: "1455-1480",
+            description: "Pierwsza wielka historia Polski napisana po łacinie. Długosz opisuje dzieje Polski od początków do swojej epoki.",
+            significance: "Fundament polskiej historiografii. Długosz stworzył narodową narrację historyczną."
+        },
+        {
+            title: "Kronika polska",
+            author: "Marcin Kromer",
+            year: "1555",
+            description: "Historia Polski od początków. Kromer kontynuuje dzieło Długosza, opisując też współczesne wydarzenia.",
+            significance: "Ważne źródło do historii renesansowej Polski. Kromer był oficjalnym historykiem królewskim."
+        },
+        {
+            title: "De origine et rebus gestis Polonorum",
+            author: "Marcin Kromer",
+            year: "1555",
+            description: "Łaciński traktat o pochodzeniu Polaków. Kromer przedstawia sarmatską teorię pochodzenia szlachty.",
+            significance: "Ugruntowanie mitu sarmatyckiego. Kromer nadał naukowy autorytet legendzie o Sarmatach."
+        },
+        {
+            title: "Kronika Galla Anonima",
+            author: "Gall Anonim",
+            year: "1113-1116",
+            description: "Najstarsza kronika polska, opisująca panowanie Bolesława Krzywoustego. Anonim tworzy apologię dynastii Piastów.",
+            significance: "Najstarsze polskie dzieło historyczne. Fundament wiedzy o najdawniejszych dziejach Polski."
+        },
+        {
+            title: "Kronika polska",
+            author: "Wincenty Kadłubek",
+            year: "1190-1208",
+            description: "Średniowieczna kronika łącząca historię z legendami. Kadłubek tworzy mitologię dynastii Piastowskiej.",
+            significance: "Drugie najstarsze polskie dzieło historyczne. Kadłubek ustanowił legendarne genealogie Polski."
+        },
+        {
+            title: "Rocznik krakowski",
+            author: "Anonimowy",
+            year: "XII-XIII wiek",
+            description: "Rocznik klasztorny zapisujący wydarzenia w Polsce. Suche zapisy dat i zdarzeń.",
+            significance: "Ważne źródło do średniowiecznej historii Polski. Podstawa dla późniejszych kronikarzy."
+        },
+        {
+            title: "Kronika Thietmara",
+            author: "Thietmar z Merseburga",
+            year: "1012-1018",
+            description: "Niemiecka kronika zawierająca informacje o wczesnej Polsce Bolesława Chrobrego.",
+            significance: "Najważniejsze obce źródło o najdawniejszej Polsce. Świadectwo niemeckie o powstaniu państwa polskiego."
+        },
+        {
+            title: "Vita sancti Adalberti",
+            author: "Brunon z Kwerfurtu",
+            year: "około 1000",
+            description: "Żywot św. Wojciecha, męczennika i patrona Polski. Najstarszy tekst łaciński związany z Polską.",
+            significance: "Jedno z najstarszych świadectw o Polsce. Dokument chrystianizacji i początków polskiej świętości."
+        },
+        {
+            title: "Gesta principum Polonorum",
+            author: "Gall Anonim",
+            year: "1113-1116",
+            description: "Alternatywna nazwa kroniki Galla - dzieje książąt polskich. Apologia Bolesława Krzywoustego.",
+            significance: "Propagandowe dzieło dynastyczne. Gall służył legitymizacji władzy Piastów."
+        },
+        {
+            title: "Kronika Boguchwała",
+            author: "Janko z Czarnkowa",
+            year: "1370-1384",
+            description: "Kronika opisująca panowanie Kazimierza Wielkiego i początki Andegawenów. Źródło do historii XIV wieku.",
+            significance: "Ważne źródło do późnego średniowiecza. Janko był świadkiem końca dynastii Piastów."
+        },
+        {
+            title: "Żywot świętej Kingi",
+            author: "Anonimowy",
+            year: "XIV wiek",
+            description: "Hagiografia św. Kingi, żony Bolesława Wstydliwego. Opowieść o życiu księżnej-świętej.",
+            significance: "Przykład średniowiecznej hagiografii polskiej. Kinga została patronką Polski."
+        },
+        {
+            title: "Miracula sancti Stanislai",
+            author: "Wincenty z Kielczy",
+            year: "XIII wiek",
+            description: "Zbiór cudów św. Stanisława, patrona Polski. Wincenty propagował kult biskupa-męczennika.",
+            significance: "Fundament kultu św. Stanisława. Wincenty ustanowił mit świętego biskupa."
+        },
+        {
+            title: "Żywot błogosławionej Salomei",
+            author: "Stanisław ze Szczepanowa",
+            year: "XV wiek",
+            description: "Hagiografia Salomei, siostry św. Kingi. Opowieść o życiu księżnej-klaryski.",
+            significance: "Przykład kobiecej świętości średniowiecza. Salomea reprezentuje ideał ascezy."
+        },
+        {
+            title: "Kronika wielkopolska",
+            author: "Anonimowy",
+            year: "XIII wiek",
+            description: "Regionalna kronika Wielkopolski. Opisuje dzieje regionu i lokalnych dynastii.",
+            significance: "Źródło do historii regionalnej Polski. Pokazuje decentralizację średniowiecznej historiografii."
+        },
+        {
+            title: "Roczniki Długosza",
+            author: "Jan Długosz",
+            year: "1455-1480",
+            description: "Monumentalna historia Polski w formie rocznika. Długosz opisuje rok po roku dzieje Polski.",
+            significance: "Najważniejsze dzieło średniowiecznej historiografii polskiej. Długosz stworzył kanon narracji historycznej."
+        },
+        {
+            title: "Vitae episcoporum Cracoviensium",
+            author: "Jan Długosz",
+            year: "XV wiek",
+            description: "Żywoty biskupów krakowskich. Długosz opisuje historię Kościoła w Polsce przez biografie hierarchów.",
+            significance: "Ważne źródło do historii Kościoła polskiego. Długosz łączył historię świecką z kościelną."
+        },
+        {
+            title: "Banderia Prutenorum",
+            author: "Jan Długosz",
+            year: "XV wiek",
+            description: "Opis chorągwi zdobytych pod Grunwaldem. Długosz kataloguje trofea zwycięstwa nad Krzyżakami.",
+            significance: "Dokument triumfu grunwaldzkiego. Długosz utrwalił pamięć o największym zwycięstwie Polski."
+        },
+        {
+            title: "Liber beneficiorum",
+            author: "Jan Długosz",
+            year: "XV wiek",
+            description: "Opis beneficjów kościelnych diecezji krakowskiej. Długosz tworzy spis majątku kościelnego.",
+            significance: "Źródło do historii ekonomicznej Kościoła. Długosz dokumentował bogactwo kościelne."
+        },
+        {
+            title: "Historia Turcarum",
+            author: "Jan Długosz",
+            year: "XV wiek",
+            description: "Historia Turków i zagrożenia tureckiego. Długosz ostrzegał przed ekspansją osmańską.",
+            significance: "Świadectwo strachu przed Turkami. Długosz propagował ideę krucjaty przeciwko islamowi."
+        },
+        {
+            title: "De Sarmatarum origine",
+            author: "Maciej z Miechowa",
+            year: "1521",
+            description: "Traktat o pochodzeniu Sarmatów i słowiańskich ludów. Miechów badał etnogenezę Słowian.",
+            significance: "Wczesna próba naukowego zbadania pochodzenia Słowian. Miechów był pionierem etnografii."
+        },
+        {
+            title: "Chronica Polonorum",
+            author: "Maciej z Miechowa",
+            year: "1519",
+            description: "Historia Polski od najdawniejszych czasów. Miechów kontynuował tradycję Długosza.",
+            significance: "Renesansowa kontynuacja dzieła Długosza. Miechów aktualizował wiedzę historyczną."
+        },
+        {
+            title: "Tractatus de duabus Sarmatiis",
+            author: "Maciej z Miechowa",
+            year: "1517",
+            description: "Opis dwóch Sarmatii - europejskiej i azjatyckiej. Miechów opisywał geografię i etnografię Europy Wschodniej.",
+            significance: "Pionierskie dzieło geograficzne o Europie Wschodniej. Miechów wprowadził Zachód w wiedzę o regionie."
+        },
+        {
+            title: "Polonia",
+            author: "Marcin Kromer",
+            year: "1577",
+            description: "Geograficzny i etnograficzny opis Polski. Kromer przedstawia kraj, ludzi, obyczaje i instytucje.",
+            significance: "Najważniejszy renesansowy opis Polski. Kromer stworzył wizytówkę kraju dla Europy."
+        },
+        {
+            title: "Historia regum Poloniae",
+            author: "Marcin Bielski",
+            year: "1597",
+            description: "Historia królów Polski w języku polskim. Bielski upowszechnił wiedzę historyczną po polsku.",
+            significance: "Pierwsza popularna historia Polski w języku ojczystym. Bielski demokratyzował wiedzę historyczną."
+        },
+        {
+            title: "Sprawa rycerska",
+            author: "Marcin Bielski",
+            year: "1569",
+            description: "Traktat o sztuce wojennej. Bielski opisuje organizację wojska i taktykę bitewną.",
+            significance: "Podręcznik wojskowy renesansu. Bielski propagował nowoczesną sztukę wojenną."
+        },
+        {
+            title: "Komedja rybałtowska",
+            author: "Mikołaj z Wilkowiecka",
+            year: "XVI wiek",
+            description: "Satyra na klasy niższe - rybałtów, włóczęgów, oszustów. Autor tworzy obraz społecznego marginesu.",
+            significance: "Rzadki przykład literatury o underclassie. Mikołaj pokazał ciemną stronę społeczeństwa."
+        },
+        {
+            title: "Historyja o chwalebnym Zmartwychwstaniu Pańskim",
+            author: "Mikołaj z Wilkowiecka",
+            year: "XVI wiek",
+            description: "Dramat pasyjny o zmartwychwstaniu Chrystusa. Mikołaj tworzy religijne widowisko na Wielkanoc.",
+            significance: "Przykład polskiego dramatu religijnego. Mikołaj rozwijał tradycję misteriów pasyjnych."
+        },
+        {
+            title: "Dialog o sprawie koronnej",
+            author: "Andrzej Wolan",
+            year: "1573",
+            description: "Traktat polityczny o elekcji króla. Wolan bronił praw szlachty do wyboru monarchy.",
+            significance: "Manifest wolności szlacheckiej. Wolan uzasadniał system elekcyjny."
+        },
+        {
+            title: "De libertate politica",
+            author: "Andrzej Wolan",
+            year: "1572",
+            description: "Traktat o wolności politycznej. Wolan formułował teorię złotej wolności szlacheckiej.",
+            significance: "Teoretyczne uzasadnienie demokracji szlacheckiej. Wolan był ideologiem sarmatyzmu politycznego."
+        },
+        {
+            title: "Gadki o ziołach",
+            author: "Marcin z Urzędowa",
+            year: "1595",
+            description: "Pierwszy polski zielnik - podręcznik ziół leczniczych. Marcin opisuje rośliny i ich właściwości.",
+            significance: "Pionierskie dzieło polskiej botaniki i medycyny. Marcin demokratyzował wiedzę medyczną."
+        },
+        {
+            title: "Herbarz",
+            author: "Marcin z Urzędowa",
+            year: "1595",
+            description: "Podręcznik ziół i roślin leczniczych z ilustracjami. Marcin łączył wiedzę ludową z medycyną."
+            significance: "Fundament polskiej fitoterapii. Marcin zachował tradycyjną wiedzę zielarską."
+        },
+        {
+            title: "Hortus conclusus",
+            author: "Mikołaj Mieleszko",
+            year: "1651",
+            description: "Zbiór poezji maryjnej. Mieleszko tworzy barokowe hymny do Matki Boskiej.",
+            significance: "Przykład polskiej poezji barokowej religijnej. Mieleszko rozwijał kult maryjny."
         }
     ];
 
@@ -1065,8 +2369,42 @@
         displayClassic(todayIndex);
     }
 
+    function scrambleBooks() {
+        // Fisher-Yates shuffle algorithm
+        for (let i = classics.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [classics[i], classics[j]] = [classics[j], classics[i]];
+        }
+        displayClassic(0); // Show first book after scrambling
+        alert('Kolejność książek została wylosowana! Teraz możesz przeglądać klasyki w losowej kolejności.');
+    }
+
+    function sortAlphabetically() {
+        classics.sort((a, b) => a.title.localeCompare(b.title, 'pl'));
+        displayClassic(0); // Show first book after sorting
+        alert('Książki zostały posortowane alfabetycznie według tytułu.');
+    }
+
     function setDailyReminder() {
-        alert('Aby otrzymywać codzienne przypomnienia:\n\niPhone: Otwórz aplikację Przypomnienia → Dodaj nowe przypomnienie → Ustaw tytuł "Przeczytaj dzisiejszą klasykę" → Ustaw powtarzanie "Codziennie" o wybranej godzinie\n\nAndroid: Otwórz Google Calendar lub Przypomnienia → Dodaj nowe wydarzenie → Ustaw tytuł "Przeczytaj dzisiejszą klasykę" → Ustaw powtarzanie "Codziennie" o wybranej godzinie');
+        const message = 'JAK USTAWIĆ CODZIENNE PRZYPOMNIENIE:\n\n' +
+            '📱 IPHONE:\n' +
+            '1. Otwórz aplikację "Przypomnienia"\n' +
+            '2. Kliknij "+" aby dodać nowe\n' +
+            '3. Wpisz: "Przeczytaj klasykę polskiej literatury"\n' +
+            '4. Kliknij ikonę "i" obok przypomnienia\n' +
+            '5. Włącz "Przypomnij w danym dniu"\n' +
+            '6. Ustaw godzinę (np. 20:00)\n' +
+            '7. Włącz "Powtarzaj" → wybierz "Codziennie"\n\n' +
+            '🤖 ANDROID:\n' +
+            '1. Otwórz Google Calendar\n' +
+            '2. Kliknij "+"\n' +
+            '3. Wybierz "Przypomnienie"\n' +
+            '4. Wpisz: "Przeczytaj klasykę polskiej literatury"\n' +
+            '5. Ustaw godzinę (np. 20:00)\n' +
+            '6. Wybierz "Nie powtarza się" → "Codziennie"\n\n' +
+            '💡 Dodaj też zakładkę do tej strony na ekranie głównym!';
+        
+        alert(message);
     }
 
     // Initialize with today's classic
